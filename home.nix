@@ -151,6 +151,7 @@ in
     ssh-agents
     unzip
     vim
+    wireguard
     wget
     xorg.xbacklight
     yubikey-manager
