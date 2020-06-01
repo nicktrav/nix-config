@@ -6,7 +6,7 @@ let
   };
   pkgs = import nixpkgs { };
 in
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -22,51 +22,137 @@ in
   # changes in each release.
   home.stateVersion = "20.03";
 
+  # Allow unfree packages
+  nixpkgs.config = import ./config.nix;
+
   imports = [
+    ./dotfiles/dotfiles.nix
     ./libraries/boringssl/boringssl.nix
     ./programs/alacritty/alacritty.nix
     ./programs/certigo/certigo.nix
     ./programs/cue/cue.nix
     ./programs/curl/curl.nix
     ./programs/go/go.nix
+    ./programs/i3/i3.nix
+    ./programs/polybar/polybar.nix
     ./programs/vim/vim.nix
     ./programs/yubico-piv-tool/yubico-piv-tool.nix
-    ./programs/yubikey-agent/yubikey-agent.nix
+    #./programs/yubikey-agent/yubikey-agent.nix
+
+    ./multi-glibc-locale-paths.nix
   ];
 
-  programs.alacritty.enable = true;
+  #programs.alacritty.enable = true;
   programs.boringssl.enable = true;
   programs.certigo.enable = true;
   programs.cue.enable = true;
   programs.curl.enable = true;
   programs.go.enable = true;
-  #programs.yubico-piv-tool.enable = true;
+  programs.yubico-piv-tool.enable = true;
   #programs.yubikey-agent.enable = true;
+  programs.chromium.enable = true;
+
+  fonts.fontconfig = {
+    enable = true;
+  };
+
+  xsession.enable = true;
+  xsession.windowManager.i3 = {
+    enable = true;
+    package = pkgs.i3-gaps;
+
+    config = rec {
+
+      bars = [];
+      window.border = 0;
+
+      keybindings =
+        let modifier = config.xsession.windowManager.i3.config.modifier;
+        in lib.mkOptionDefault {
+          "${modifier}+Return"  = "exec alacritty";
+          "${modifier}+d"       = "exec rofi -modi drun -show drun -theme gruvbox-dark-soft";
+          "${modifier}+Shift+d" = "exec rofi -show window";
+
+          # Vim keybindings
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+l" = "move right";
+
+          # Brightness controls
+          "XF86MonBrightnessUp" = "exec xbacklight +10";
+          "XF86MonBrightnessDown" = "exec xbacklight -10";
+
+          # Volume controls
+          "XF86AudioMute" = "exec alsa set Master toggle";
+          "XF86AudioLowerVolume" = "exec alsa set Master 4%-";
+          "XF86AudioRaiseVolume" = "exec alsa set Master 4%+";
+
+          # Lock screen
+          #"${modifier}+Shift+x" = "exec betterlockscreen -l dim";
+        };
+
+      startup = [
+        {
+          command = "setxkbmap -option caps:escape";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "systemctl --user restart polybar.service";
+          always = true;
+          notification = false;
+        }
+      ];
+
+      window.commands = [
+        {
+          criteria = {
+            "class" = "^.*";
+          };
+          command = "border pixel 0";
+        }
+      ];
+    };
+  };
 
   home.packages = with pkgs; [
     awscli
-    fzf
+    cacert
     cargo
+    coreutils
     dep2nix
+    nerdfonts
+    powerline-fonts
+    fzf
     git
+    glibcLocales
     gnupg
+    gucharmap
     google-cloud-sdk
+    htop
+    inconsolata
     maven
-    #opensc
-    #openssh
+    opensc
+    openssh
     packer
-    pinentry_mac
+    pcsctools
     protobuf
     nghttp2
     nix-prefetch-git
-    cacert
     ripgrep
     rustc
     shellcheck
-    #ssh-agents
+    spotify
+    ssh-agents
     unzip
     vim
     wget
-    #yubikey-manager
+    xorg.xbacklight
+    yubikey-manager
   ];
 }
