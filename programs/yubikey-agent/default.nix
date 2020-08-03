@@ -18,6 +18,7 @@ buildGoModule rec {
   goPackagePath = "filippo.io/yubikey-agent";
 
   modSha256 = "0hq9j0w3y94sd25vcwhgs4zswpqcw2j6midvdny5lq2sfz7jwv3d";
+  #vendorSha256 = "";
 
   buildFlagsArray = [
     "-ldflags=-X main.Version=v${version}"

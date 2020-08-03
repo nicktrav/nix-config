@@ -16,4 +16,3 @@ curl.overrideAttrs ( old: rec {
   # Compile against boringssl
   configureFlags = old.configureFlags ++ ["--with-ssl=${boringssl.out}"];
 })
-

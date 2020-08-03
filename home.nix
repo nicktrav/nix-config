@@ -34,39 +34,66 @@ in
     ./programs/yubikey-agent/yubikey-agent.nix
   ];
 
-  programs.alacritty.enable = true;
+  #programs.alacritty.enable = true;
   programs.boringssl.enable = true;
   programs.certigo.enable = true;
-  programs.cue.enable = true;
+  #programs.cue.enable = true;
   programs.curl.enable = true;
-  programs.go.enable = true;
-  #programs.yubico-piv-tool.enable = true;
+  #programs.go.enable = true;
+  programs.yubico-piv-tool.enable = true;
   #programs.yubikey-agent.enable = true;
 
   home.packages = with pkgs; [
-    awscli
+    #alacritty
     fzf
     cargo
     dep2nix
+    dict
+    ffmpeg
     git
     gnupg
+    go
     google-cloud-sdk
+    grpcurl
+    htop
+    inconsolata
+    openjdk11
+    jetbrains.idea-ultimate
+    jetbrains.goland
+    jetbrains.clion
+    jq
+    kazam
+    kops
+    kubectl
+    kubectx
     maven
-    #opensc
-    #openssh
+    opensc
+    openssh
     packer
-    pinentry_mac
+    #pinentry_mac
+    powerline-fonts
     protobuf
+    nerdfonts
     nghttp2
     nix-prefetch-git
     cacert
     ripgrep
     rustc
     shellcheck
-    #ssh-agents
+    slack
+    ssh-agents
+    tmux
+    tree
     unzip
-    vim
+    #vim
     wget
-    #yubikey-manager
+    wireshark
+    whois
+    xclip
+    xsel
+    yubikey-manager
+    yubioath-desktop
   ];
+
+  news.display = "silent";
 }
