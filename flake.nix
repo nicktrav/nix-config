@@ -11,6 +11,7 @@
 
   outputs = inputs: {
     nixosConfigurations = {
+      vm = import ./machines/vm.nix inputs;
       x1 = import ./machines/x1.nix inputs;
     };
   };
