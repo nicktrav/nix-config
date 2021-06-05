@@ -54,11 +54,21 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
       networking.useDHCP = false;
       networking.interfaces.ens3.useDHCP = true;
 
-      # System services.
+      # XServer / Gnome.
 
-      services.xserver.enable = true;
-      services.xserver.desktopManager.gnome.enable = true;
-      services.xserver.displayManager.gdm.enable = true;
+      services.xserver = {
+        enable = true;
+
+        desktopManager = {
+          gnome.enable = true;
+        };
+
+        displayManager = {
+          gdm.enable = true;
+        };
+      };
+
+      # SSH.
 
       services.openssh.enable = true;
 
@@ -66,6 +76,7 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
 
       environment.systemPackages = with pkgs; [
         git
+        gnome3.gnome-tweaks
       ];
 
       # Time.
