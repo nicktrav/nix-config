@@ -40,7 +40,7 @@ call dein#begin(expand('~/.vim'))
   call dein#add('tpope/vim-surround')
   call dein#add('LnL7/vim-nix')
   call dein#add('jvirtanen/vim-hcl')
-  call dein#add('chriskempson/tomorrow-theme')
+  call dein#add('chriskempson/base16-vim')
   if dein#check_install()
     call dein#install()
   endif
@@ -241,7 +241,7 @@ autocmd BufRead,BufNewFile *.dep set syntax=python
 " -----------------------------------------------------------------------------
 syntax enable
 set termguicolors
-"colorscheme Tomorrow-Night
+colorscheme base16-tomorrow-night
 set t_ut= " without this line, weird things happen when using tmux
 
 " vim-airline
