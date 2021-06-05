@@ -4,6 +4,7 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
     { system.stateVersion = "21.05"; }
     ({ config, lib, pkgs, modulesPath, ... }: {
       imports = [
+        ./fonts.nix
         ./users.nix
         (modulesPath + "/profiles/qemu-guest.nix")
       ];
@@ -55,9 +56,10 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
 
       # System services.
 
-      #services.xserver.enable = true;
-      #services.xserver.desktopManager.gnome.enable = true;
-      #services.xserver.displayManager.gdm.enable = true;
+      services.xserver.enable = true;
+      services.xserver.desktopManager.gnome.enable = true;
+      services.xserver.displayManager.gdm.enable = true;
+
       services.openssh.enable = true;
 
       # System packages.
