@@ -13,6 +13,10 @@
     experimental-features = nix-command flakes
   '';
 
+  # Allow unfree software.
+
+  nixpkgs.config.allowUnfree = true;
+
   # Networking.
 
   networking.hostName = "nickt";
