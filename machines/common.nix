@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ modulesPath, config, pkgs, ... }:
 
 {
   imports = [
+    ./hardware-configuration.nix
     ./fonts.nix
     ./users.nix
   ];
