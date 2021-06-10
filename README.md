@@ -24,35 +24,35 @@ to set a password immediately on boot and SSH into the VM.
 
 ```bash
 # Partition the disk.
-$ sudo parted /dev/sda -- mklabel msdos
-$ sudo parted /dev/sda -- mkpart primary 1MiB 30GiB            # /
-$ sudo parted /dev/sda -- mkpart primary 30GiB -4GiB           # /home
-$ sudo parted /dev/sda -- mkpart primary linux-swap -4GiB 100% # swap
+sudo parted -s /dev/sda -- mklabel msdos
+sudo parted -s /dev/sda -- mkpart primary 1MiB 30GiB            # /
+sudo parted -s /dev/sda -- mkpart primary 30GiB -4GiB           # /home
+sudo parted -s /dev/sda -- mkpart primary linux-swap -4GiB 100% # swap
 
 # Format the disks.
-$ mkfs.ext4 -L nixos /dev/sda1
-$ mkfs.ext4 -L home /dev/sda2
+sudo mkfs.ext4 -F -L nixos /dev/sda1
+sudo mkfs.ext4 -F -L home /dev/sda2
 
 # Enable swap.
-$ mkswap -L swap /dev/sda3
-$ swapon /dev/sda3
+sudo mkswap -L swap /dev/sda3
+sudo swapon /dev/sda3
 
 # Mount the root partition.
-$ mount /dev/disk/by-label/nixos /mnt
-
-# Boot a shell that has access to flakes + git.
-$ nix-shell -p nixUnstable git
+sudo mount /dev/disk/by-label/nixos /mnt
 
 # Mount the nix configuration.
-$ mkdir /nix-config
-$ mount -t 9p -o trans=virtio /share /nix-config
+sudo mkdir /nix-config
+sudo mount -t 9p -o trans=virtio /share /nix-config
+
+# Boot a shell that has access to flakes + git.
+nix-shell -p nixUnstable git
 
 # Set up the OS.
-$ nixos-install --flake /nix-config#vm
+sudo nixos-install --flake /nix-config#vm
 
 # Reboot!
-$ reboot
+sudo reboot now
 
 # Log in as root and set a password for the user.
-$ passwd nickt
+sudo passwd nickt
 ```

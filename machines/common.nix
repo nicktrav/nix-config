@@ -1,4 +1,4 @@
-{ modulesPath, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -40,7 +40,12 @@
 
   # SSH.
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    permitRootLogin = "no";
+    challengeResponseAuthentication = false;
+  };
 
   # System packages.
 
