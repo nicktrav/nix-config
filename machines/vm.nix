@@ -3,20 +3,14 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
   modules = [
     { system.stateVersion = "21.05"; }
 
+    inputs.home-manager.nixosModules.home-manager
+
     {
       imports = [
-        ./common.nix
         ./vm
+        ../profiles/desktop.nix
+        ../users/nickt.nix
       ];
-    }
-
-    inputs.home-manager.nixosModules.home-manager {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.nickt = { ... }: {
-        home.stateVersion = "21.05";
-        imports = [ ../users/nickt.nix ];
-      };
     }
   ];
 }

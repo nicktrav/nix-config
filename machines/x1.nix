@@ -4,9 +4,7 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
     { system.stateVersion = "21.05"; }
     ({ config, lib, pkgs, modulesPath, ... }: {
       imports = [
-        ./hardware-configuration.nix
-        ./fonts.nix
-        ./users.nix
+        "${modulesPath}/installer/scan/not-detected.nix"
       ];
 
       # Enable flakes.
