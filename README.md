@@ -1,4 +1,3 @@
-=======
 nix-home
 ========
 
@@ -48,7 +47,7 @@ sudo mount -t 9p -o trans=virtio /share /nix-config
 nix-shell -p nixUnstable git
 
 # Set up the OS.
-sudo nixos-install --flake /nix-config#vm-bootstrap
+[sudo](sudo) nixos-install --flake /nix-config#vm-bootstrap
 
 # Reboot!
 sudo reboot now
