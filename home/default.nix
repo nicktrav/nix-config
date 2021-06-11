@@ -4,7 +4,7 @@ user:
     ./alacritty.nix
     ./bash
     ./firefox.nix
-    (import ./git.nix user)
+    ./git.nix
     ./htop.nix
     ./jetbrains.nix
     ./programs.nix
