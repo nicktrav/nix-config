@@ -1,15 +1,19 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
-  imports = [
-    ./common-base.nix
-    ./fonts.nix
-    ./users.nix
-  ];
-
   # Allow unfree software.
 
   nixpkgs.config.allowUnfree = true;
+
+  # Fonts.
+
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      inconsolata
+      powerline-fonts
+    ];
+  };
 
   # XServer / Gnome.
 
@@ -39,3 +43,4 @@
     gnome3.gnome-tweaks
   ];
 }
+

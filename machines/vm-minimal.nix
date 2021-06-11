@@ -5,7 +5,6 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
 
     {
       imports = [
-        ./common-base.nix
         ./vm
       ];
     }
