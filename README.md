@@ -23,21 +23,28 @@ to set a password immediately on boot and SSH into the VM.
 
 ```bash
 # Partition the disk.
-sudo parted -s /dev/sda -- mklabel msdos
-sudo parted -s /dev/sda -- mkpart primary 1MiB 30GiB            # /
+sudo parted -s /dev/sda -- mklabel gpt
+sudo parted -s /dev/sda -- mkpart ESP fat32 1MiB 512MiB         # /boot
+sudo parted -s /dev/sda -- set 1 esp on
+sudo parted -s /dev/sda -- mkpart primary 512MiB 30GiB          # /
 sudo parted -s /dev/sda -- mkpart primary 30GiB -4GiB           # /home
 sudo parted -s /dev/sda -- mkpart primary linux-swap -4GiB 100% # swap
 
 # Format the disks.
-sudo mkfs.ext4 -F -L nixos /dev/sda1
-sudo mkfs.ext4 -F -L home /dev/sda2
+sudo mkfs.fat -F 32 -n boot /dev/sda1
+sudo mkfs.ext4 -F -L nixos /dev/sda2
+sudo mkfs.ext4 -F -L home /dev/sda3
 
 # Enable swap.
-sudo mkswap -L swap /dev/sda3
-sudo swapon /dev/sda3
+sudo mkswap -L swap /dev/sda4
+sudo swapon /dev/sda4
 
 # Mount the root partition.
 sudo mount /dev/disk/by-label/nixos /mnt
+
+# Mount the /boot partition.
+sudo mkdir /mnt/boot
+sudo mount /dev/disk/by-label/boot /mnt/boot
 
 # Mount the nix configuration.
 sudo mkdir /nix-config
@@ -46,12 +53,17 @@ sudo mount -t 9p -o trans=virtio /share /nix-config
 # Boot a shell that has access to flakes + git.
 nix-shell -p nixUnstable git
 
-# Set up the OS.
-[sudo](sudo) nixos-install --flake /nix-config#vm-minimal
+# Set up the minimal OS.
+sudo nixos-install --flake /nix-config#vm-minimal
 
 # Reboot!
 sudo reboot now
 
-# Log in as root and set a password for the user.
+# Log in as root and set up the full OS.
+sudo mkdir /mnt
+sudo nixos-rebuild --flake /nix-config#vm boot
+sudo reboot now
+
+# Log in as nickt via SSH and set a password.
 sudo passwd nickt
 ```

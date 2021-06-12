@@ -12,7 +12,7 @@
   outputs = inputs: {
     nixosConfigurations = {
       vm = import ./machines/vm.nix inputs;
-      vm-bootstrap = import ./machines/vm-bootstrap.nix inputs;
+      vm-minimal = import ./machines/vm-minimal.nix inputs;
       x1 = import ./machines/x1.nix inputs;
     };
   };
