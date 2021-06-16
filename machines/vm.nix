@@ -16,6 +16,7 @@ inputs: inputs.nixpkgs.lib.nixosSystem {
         imports = [
           (import ./vm inputs)
           ../profiles/desktop.nix
+          ../profiles/yubikey.nix
           ../users/nickt.nix
         ];
       }

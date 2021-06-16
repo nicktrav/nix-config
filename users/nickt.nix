@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   # TODO: Enable this once I work out why it's locking me out.
@@ -7,6 +7,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.nickt = { ... }: {
+    _module.args.pkgs-unstable = pkgs-unstable;
     home.stateVersion = "21.05";
     imports = [
       ../home/default.nix
