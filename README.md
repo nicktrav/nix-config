@@ -1,2 +1,2 @@
-nix-home
-========
+nix-config
+==========
