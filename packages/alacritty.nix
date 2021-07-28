@@ -29,12 +29,18 @@
         };
       };
       font = {
+        size = 13.0;
         antialias = true;
-        family = "Inconsolata";
         normal = {
-          size = 12.0;
+          family = "Inconsolata-dz for Powerline";
         };
       };
+      key_bindings = [
+        { key = "Up";    mods = "Option"; chars = "\\x1b[1;5A"; }
+        { key = "Down";  mods = "Option"; chars = "\\x1b[1;5B"; }
+        { key = "Left";  mods = "Option"; chars = "\\x1bb"; }
+        { key = "Right"; mods = "Option"; chars = "\\x1bf"; }
+      ];
       live_config_reload = true;
       window = {
         decorations = "none";

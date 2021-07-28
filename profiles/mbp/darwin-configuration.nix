@@ -16,6 +16,16 @@
 
   home-manager.users.nickt = (import ./packages.nix);
 
+  # Fonts.
+
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
+      inconsolata
+      powerline-fonts
+    ];
+  };
+
   # System packages.
 
   environment.systemPackages = with pkgs; [
