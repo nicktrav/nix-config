@@ -36,6 +36,7 @@
     ./../../packages/alacritty.nix
     ./../../packages/bash
     ./../../packages/git.nix
+    ./../../packages/htop.nix
     ./../../packages/tmux
     ./../../packages/vim
   ];
