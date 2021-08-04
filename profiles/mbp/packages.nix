@@ -46,7 +46,7 @@ in {
   imports = [
     ./../../packages/alacritty.nix
     ./../../packages/bash
-    ./../../packages/git.nix
+    ./../../packages/git
     ./../../packages/htop.nix
     ./../../packages/jetbrains
     ./../../packages/tmux
