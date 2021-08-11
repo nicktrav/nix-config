@@ -35,7 +35,6 @@
   # TODO(nickt): Move the yubikey specific things into their own package.
   environment.variables = {
     "PKCS11_PATH" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
-    "FOO" = "BAR";
   };
 
   # Used for backwards compatibility, please read the changelog before
