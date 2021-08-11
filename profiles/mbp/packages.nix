@@ -1,12 +1,10 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
+{ config, pkgs, ... }:
 
 let
 
-  callPackage = callPackageWith pkgs;
+  unstable = import <nixpkgs-unstable> {};
 
-  jdk-custom = (callPackage ./../../packages/openjdk {});
+  jdk-custom = (pkgs.callPackage ./../../packages/openjdk {});
 
 in {
 
@@ -20,7 +18,6 @@ in {
     curl
     dig
     file
-    go
     golint
     jetbrains.goland
     jdk-custom
@@ -40,6 +37,8 @@ in {
     whois
     yubico-piv-tool
     yubikey-manager
+  ]) ++ (with unstable; [
+    go
   ]);
 
   # Custom packages.
