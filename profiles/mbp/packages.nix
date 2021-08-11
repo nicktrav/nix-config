@@ -2,7 +2,12 @@
 
 let
 
-  unstable = import <nixpkgs-unstable> {};
+  latestSHA = "6ba79a5320e82b139452d49e6620c5ddfc2f02e8";
+  nixpkgs-latest = builtins.fetchTarball {
+    url = "github.com/NixOS/nixpkgs/archive/${latestSHA}.tar.gz";
+    sha256 = "1j9wnawgyfix0jz4c25iz2xm9ygbs6zz87hrqkwf4a0cizxchxr6";
+  };
+  pkgs-latest = import nixpkgs-latest {};
 
   jdk-custom = (pkgs.callPackage ./../../packages/openjdk {});
 
@@ -37,7 +42,7 @@ in {
     whois
     yubico-piv-tool
     yubikey-manager
-  ]) ++ (with unstable; [
+  ]) ++ (with pkgs-latest; [
     go
   ]);
 
