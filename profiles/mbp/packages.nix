@@ -23,6 +23,7 @@ in {
     curl
     dig
     file
+    gnumake
     golint
     jetbrains.goland
     jdk-custom
