@@ -24,8 +24,7 @@ let
   #
   # The issue with using it is that it looks for the xcodebuild tool, which
   # isn't present in nix.
-  #jdk = callPackage ./jdk.nix {};
-  jdk = callPackage ../openjdk {};
+  jdk = pkgs.jetbrains.jdk;
 
   buildGoland = { name, version, src, license, description, wmClass, ... }:
     (mkJetBrainsProduct {
@@ -49,6 +48,46 @@ in {
   nixpkgs.overlays = [
     (self: super: {
       jetbrains = super.jetbrains // {
+        jdk = super.stdenv.mkDerivation rec {
+          pname = "jetbrainsjdk";
+          version = "1504.12";
+          darwinVersion = "11_0_11-osx-x64-b${version}";
+
+          src = super.fetchurl {
+            url = "https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-${darwinVersion}.tar.gz";
+            sha256 = "0z97id5bkpg8jsabs4sq1zv72g0ss7ahw1bdysv1msmfgqm7q2lj";
+          };
+
+          nativeBuildInputs = [ super.file ];
+          unpackCmd = "mkdir jdk; pushd jdk; tar -xzf $src; popd";
+          installPhase = ''
+            cd ..;
+            mv $sourceRoot/jbr $out;
+          '';
+
+          passthru.home = "${self.jetbrains.jdk}/Contents/Home";
+
+          meta = with super.lib; {
+            description = "An OpenJDK fork to better support Jetbrains's products.";
+            longDescription = ''
+              JetBrains Runtime is a runtime environment for running IntelliJ Platform
+              based products on Windows, Mac OS X, and Linux. JetBrains Runtime is
+              based on OpenJDK project with some modifications. These modifications
+              include: Subpixel Anti-Aliasing, enhanced font rendering on Linux, HiDPI
+              support, ligatures, some fixes for native crashes not presented in
+              official build, and other small enhancements.
+
+              JetBrains Runtime is not a certified build of OpenJDK. Please, use at
+              your own risk.
+            '';
+            homepage = "https://bintray.com/jetbrains/intellij-jdk/";
+            documentation = "https://confluence.jetbrains.com/display/JBR/JetBrains+Runtime";
+            license = licenses.gpl2;
+            maintainers = with maintainers; [ edwtjo ];
+            platforms = with platforms; [ "x86_64-linux" "x86_64-darwin" ];
+          };
+        };
+
         goland = buildGoland rec {
           name = "goland-${version}";
           version = "2021.1.1"; /* updated by script */
@@ -64,4 +103,8 @@ in {
       };
     })
   ];
+
+  home.packages = (with pkgs; [
+    jetbrains.goland
+  ]);
 }

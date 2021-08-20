@@ -9,8 +9,6 @@ let
   };
   pkgs-latest = import nixpkgs-latest {};
 
-  jdk-custom = (pkgs.callPackage ./../../packages/openjdk {});
-
 in {
 
   # Enable bash, disable zsh (the default).
@@ -29,7 +27,6 @@ in {
     gnumake
     golint
     jetbrains.goland
-    jdk-custom
     jq
     kubectx
     kubectl
