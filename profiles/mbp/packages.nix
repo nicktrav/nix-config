@@ -26,7 +26,6 @@ in {
     file
     gnumake
     golint
-    jetbrains.goland
     jq
     kubectx
     kubectl
