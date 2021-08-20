@@ -19,7 +19,10 @@ in {
 
   # Home-manager default packages.
   home.packages = (with pkgs; [
+    autoconf
+    bazelisk
     certigo
+    cmake
     curl
     dig
     file
@@ -30,7 +33,9 @@ in {
     jq
     kubectx
     kubectl
+    libtool
     lsof
+    nodejs
     opensc
     ripgrep
     shellcheck
@@ -41,6 +46,7 @@ in {
     wget
     which
     whois
+    yarn
     yubico-piv-tool
     yubikey-manager
   ]) ++ (with pkgs-latest; [
