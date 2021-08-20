@@ -11,6 +11,8 @@ with lib;
 
 let
 
+  config.jetbrains.vmopts = builtins.readFile ./vmoptions;
+
   vmopts = config.jetbrains.vmopts or null;
 
   callPackage = callPackageWith pkgs;
