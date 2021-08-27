@@ -23,6 +23,7 @@ in {
     cmake
     curl
     dig
+    errcheck
     file
     gnumake
     golint
@@ -54,6 +55,7 @@ in {
     ./../../packages/alacritty.nix
     ./../../packages/bash
     ./../../packages/git
+    ./../../packages/go-tools
     ./../../packages/htop.nix
     ./../../packages/jetbrains
     ./../../packages/tmux
