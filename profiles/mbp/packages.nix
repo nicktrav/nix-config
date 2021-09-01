@@ -40,6 +40,7 @@ in {
     ssh-agents
     tree
     unzip
+    watch
     wget
     which
     whois
