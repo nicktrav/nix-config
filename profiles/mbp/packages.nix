@@ -21,6 +21,7 @@ in {
     bazelisk
     certigo
     cmake
+    colordiff
     curl
     dig
     errcheck
