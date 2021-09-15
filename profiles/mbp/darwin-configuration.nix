@@ -29,6 +29,7 @@
   # System packages.
 
   environment.systemPackages = with pkgs; [
+    bash
     reattach-to-user-namespace
   ];
 
