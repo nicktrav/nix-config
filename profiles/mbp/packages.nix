@@ -27,6 +27,7 @@ in {
     errcheck
     file
     gnumake
+    go-tools
     golint
     jq
     kubectx
