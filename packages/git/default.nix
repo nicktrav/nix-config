@@ -1,14 +1,19 @@
 { config, ... }:
 
 {
-  xdg.configFile."git/.gitignore_global".source = ./.gitignore_global;
+  xdg.configFile."git/.gitconfig".source = ./.gitconfig;
 
   programs.git = {
     enable = true;
-    extraConfig = {
-      core = {
-        excludesFile = "~/.config/git/.gitignore_global";
-      };
-    };
+    includes = [
+      { path = "~/.config/git/.gitconfig"; }
+    ];
+    ignores = [
+      "*.swn"
+      "*.swo"
+      "*.swp"
+      ".idea/"
+      ".ijwb/"
+    ];
   };
 }

@@ -9,11 +9,26 @@ let
   };
   pkgs-latest = import nixpkgs-latest {};
 
+  # Custome packages.
+  git-tidy-up = pkgs.callPackage ../../packages/git-tidy-up {};
+
 in {
 
   # Enable bash, disable zsh (the default).
   programs.bash.enable = true;
   programs.zsh.enable = false;  # default shell on catalina
+
+  # Custom home-manager packages.
+  imports = [
+    ./../../packages/alacritty.nix
+    ./../../packages/bash
+    ./../../packages/git
+    ./../../packages/go-tools
+    ./../../packages/htop.nix
+    ./../../packages/jetbrains
+    ./../../packages/tmux
+    ./../../packages/vim
+  ];
 
   # Home-manager default packages.
   home.packages = (with pkgs; [
@@ -27,6 +42,7 @@ in {
     errcheck
     file
     gnumake
+    git-tidy-up
     go-tools
     golint
     jq
@@ -49,19 +65,13 @@ in {
     yarn
     yubico-piv-tool
     yubikey-manager
-  ]) ++ (with pkgs-latest; [
+  ]) ++
+  # Home-manager packages from a more recent, pinned nixpkgs SHA.
+  (with pkgs-latest; [
     go
-  ]);
-
+  ]) ++
   # Custom packages.
-  imports = [
-    ./../../packages/alacritty.nix
-    ./../../packages/bash
-    ./../../packages/git
-    ./../../packages/go-tools
-    ./../../packages/htop.nix
-    ./../../packages/jetbrains
-    ./../../packages/tmux
-    ./../../packages/vim
+  [
+    git-tidy-up
   ];
 }
