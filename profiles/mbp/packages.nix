@@ -41,6 +41,7 @@ in {
     dig
     errcheck
     file
+    google-cloud-sdk
     gnumake
     git-tidy-up
     go-tools
@@ -68,6 +69,7 @@ in {
   ]) ++
   # Home-manager packages from a more recent, pinned nixpkgs SHA.
   (with pkgs-latest; [
+    awscli2
     go
   ]) ++
   # Custom packages.
