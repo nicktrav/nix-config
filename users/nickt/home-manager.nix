@@ -1,18 +1,22 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, ... }:
+
+{
   imports = [
-    ./alacritty.nix
-    ./bash
-    ./firefox.nix
-    ./git.nix
-    ./htop.nix
-    ./jetbrains.nix ./tmux
-    ./vim
+    ./../../pkgs/alacritty.nix
+    ./../../pkgs/bash
+    ./../../pkgs/git.nix
+    ./../../pkgs/htop.nix
+    ./../../pkgs/jetbrains.nix
+    ./../../pkgs/tmux
+    ./../../pkgs/vim
   ];
 
   home.packages = (with pkgs; [
     certigo
     curl
     dig
+    firefox
+    go
     jq
     kubectx
     kubectl
@@ -29,7 +33,5 @@
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
-  ]) ++ (with pkgs-unstable; [
-    go
   ]);
 }

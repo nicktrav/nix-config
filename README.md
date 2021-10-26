@@ -24,20 +24,18 @@ to set a password immediately on boot and SSH into the VM.
 ```bash
 # Partition the disk.
 sudo parted -s /dev/sda -- mklabel gpt
-sudo parted -s /dev/sda -- mkpart ESP fat32 1MiB 512MiB         # /boot
-sudo parted -s /dev/sda -- set 1 esp on
-sudo parted -s /dev/sda -- mkpart primary 512MiB 30GiB          # /
-sudo parted -s /dev/sda -- mkpart primary 30GiB -4GiB           # /home
-sudo parted -s /dev/sda -- mkpart primary linux-swap -4GiB 100% # swap
+sudo parted -s /dev/sda -- mkpart primary 512MiB -8GiB           # /home
+sudo parted -s /dev/sda -- mkpart primary linux-swap -8GiB 100%  # swap
+sudo parted -s /dev/sda -- mkpart ESP fat32 1MiB 512MiB          # /boot
+sudo parted -s /dev/sda -- set 3 esp on
 
 # Format the disks.
-sudo mkfs.fat -F 32 -n boot /dev/sda1
-sudo mkfs.ext4 -F -L nixos /dev/sda2
-sudo mkfs.ext4 -F -L home /dev/sda3
+sudo mkfs.ext4 -F -L nixos /dev/sda1
+sudo mkfs.fat -F 32 -n boot /dev/sda3
 
 # Enable swap.
-sudo mkswap -L swap /dev/sda4
-sudo swapon /dev/sda4
+sudo mkswap -L swap /dev/sda2
+sudo swapon /dev/sda2
 
 # Mount the root partition.
 sudo mount /dev/disk/by-label/nixos /mnt
