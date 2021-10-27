@@ -45,5 +45,6 @@ vm/setup:
 vm/copy:
 	rsync -av -e 'ssh -p$(NIXPORT)' \
 		--exclude='.git/' \
+		--exclude='*.swp' \
 		--rsync-path="sudo rsync" \
 		$(MAKEFILE_DIR)/ $(NIXUSER)@$(NIXADDR):/nix-config
