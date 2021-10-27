@@ -46,6 +46,7 @@ in {
     git-tidy-up
     go-tools
     golint
+    graphviz
     jq
     kubectx
     kubectl
