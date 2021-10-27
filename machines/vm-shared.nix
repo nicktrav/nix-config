@@ -49,10 +49,11 @@
 
     desktopManager = {
       gnome.enable = true;
+      wallpaper.mode = "scale";
     };
 
     displayManager = {
-      gdm.enable = true;
+      lightdm.enable = true;
     };
   };
 
