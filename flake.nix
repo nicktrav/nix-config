@@ -12,12 +12,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  let
     mkmachine = import ./lib/mkmachine.nix;
   in {
     nixosConfigurations = {
       vm = mkmachine "vm" {
-        inherit nixpkgs home-manager;
+        inherit nixpkgs nixpkgs-unstable home-manager;
         system = "x86_64-linux";
         user   = "nickt";
       };

@@ -1,19 +1,23 @@
 # This function creates a NixOS system based on our VM setup for a
 # particular architecture.
-name: { nixpkgs, home-manager, system, user }:
+name: { nixpkgs, nixpkgs-unstable, home-manager, system, user }:
 
 nixpkgs.lib.nixosSystem rec {
   inherit system;
 
-  modules = [
+  modules = let
+    # Allow for use of both stable and unstable packages.
+    # See: https://github.com/nix-community/home-manager/issues/1538
+    defaults = { pkgs, ... }: {
+      _module.args.nixpkgs-unstable =
+        import nixpkgs-unstable { inherit (pkgs.stdenv.targetPlatform) system; };
+    };
+  in [
+    defaults
+    home-manager.nixosModules.home-manager
     ../hardware/vm.nix
     ../machines/vm.nix
     ../users/nickt/nixos.nix
-    home-manager.nixosModules.home-manager {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.nickt = import ../users/nickt/home-manager.nix;
-    }
   ];
 
   extraArgs = {

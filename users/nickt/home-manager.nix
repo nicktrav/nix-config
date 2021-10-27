@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -12,11 +12,12 @@
   ];
 
   home.packages = (with pkgs; [
+    _1password
+    _1password-gui
     certigo
     curl
     dig
     firefox
-    go
     jq
     kubectx
     kubectl
@@ -33,5 +34,7 @@
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
+  ]) ++ (with pkgs-unstable; [
+    go
   ]);
 }

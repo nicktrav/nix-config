@@ -1,4 +1,4 @@
-{ config, pkgs, currentSystem, ... }:
+{ config, pkgs, lib, currentSystem, ... }:
 
 {
   # use unstable nix so we can access flakes
