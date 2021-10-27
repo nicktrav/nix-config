@@ -10,8 +10,13 @@ nixpkgs.lib.nixosSystem rec {
     # See: https://github.com/nix-community/home-manager/issues/1538
     defaults = { pkgs, ... }: {
       _module.args.nixpkgs-unstable =
-        import nixpkgs-unstable { inherit (pkgs.stdenv.targetPlatform) system; };
-    };
+        import nixpkgs-unstable {
+          inherit (pkgs.stdenv.targetPlatform) system;
+          # Allow unfree packages in unstable.
+          # See: https://discourse.nixos.org/t/only-one-nixpkgs-in-a-flake-input-can-allow-unfree/8866
+          config.allowUnfree = true;
+        };
+      };
   in [
     defaults
     home-manager.nixosModules.home-manager

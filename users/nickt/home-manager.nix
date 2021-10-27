@@ -12,8 +12,6 @@
   ];
 
   home.packages = (with pkgs; [
-    _1password
-    _1password-gui
     certigo
     curl
     dig
@@ -35,6 +33,9 @@
     yubikey-manager
     yubioath-desktop
   ]) ++ (with pkgs-unstable; [
+    _1password
+    _1password-gui
     go
+    google-chrome
   ]);
 }
