@@ -43,6 +43,7 @@ in {
     file
     google-cloud-sdk
     gnumake
+    gnutar
     git-tidy-up
     go-tools
     golint
