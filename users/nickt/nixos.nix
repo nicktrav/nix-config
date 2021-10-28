@@ -14,7 +14,7 @@
   users.users.nickt = {
     isNormalUser = true;
     home = "/home/nickt";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     shell = pkgs.bash;
     hashedPassword = "$6$A4Qj3zATN$p1dfabtmVJa9aE02Px1tsufmeS1TP3AE6LU6V/36mqvHVW1gtvQl0Li8D8tdVW9G0rP1P7M4CN7hdG7CgfsFY1";
     openssh.authorizedKeys.keyFiles = [
