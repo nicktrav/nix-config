@@ -31,9 +31,6 @@ export BLOCKSIZE=1k
 # with a space
 export HISTCONTROL=ignoreboth
 
-# Fuzzy finder
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # Supercharge fzf with ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,.pants}/*"'
 

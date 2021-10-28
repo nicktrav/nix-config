@@ -4,6 +4,7 @@
   imports = [
     ./../../pkgs/alacritty.nix
     ./../../pkgs/bash
+    ./../../pkgs/fzf.nix
     ./../../pkgs/git.nix
     ./../../pkgs/htop.nix
     ./../../pkgs/jetbrains.nix
@@ -20,6 +21,7 @@
     kubectx
     kubectl
     lsof
+    nix-prefetch-git
     opensc
     ripgrep
     shellcheck
