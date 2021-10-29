@@ -47,7 +47,6 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    dpi = 220;
 
     desktopManager = {
       gnome.enable = true;
@@ -55,7 +54,7 @@
     };
 
     displayManager = {
-      lightdm.enable = true;
+      gdm.enable = true;
     };
   };
 
