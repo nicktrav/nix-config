@@ -5,7 +5,7 @@
     ./../../pkgs/alacritty.nix
     ./../../pkgs/bash
     ./../../pkgs/fzf.nix
-    ./../../pkgs/git.nix
+    ./../../pkgs/git
     ./../../pkgs/htop.nix
     ./../../pkgs/jetbrains.nix
     ./../../pkgs/tmux
