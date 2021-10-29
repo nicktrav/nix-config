@@ -38,6 +38,7 @@
     _1password
     _1password-gui
     go
+    go-tools
     google-chrome
   ]);
 }
