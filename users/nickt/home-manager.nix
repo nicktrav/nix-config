@@ -11,6 +11,7 @@
     ./../../pkgs/jetbrains
     ./../../pkgs/tmux
     ./../../pkgs/vim
+    ./../../pkgs/x
     ./wallpaper.nix
   ];
 
