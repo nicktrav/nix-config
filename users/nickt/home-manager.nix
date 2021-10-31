@@ -8,7 +8,7 @@
     ./../../pkgs/git
     ./../../pkgs/htop.nix
     ./../../pkgs/i3
-    ./../../pkgs/jetbrains.nix
+    ./../../pkgs/jetbrains
     ./../../pkgs/tmux
     ./../../pkgs/vim
     ./wallpaper.nix
