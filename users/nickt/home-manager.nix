@@ -60,6 +60,7 @@
     bazelisk
     go
     go-tools
+    golint
     google-chrome
   ]);
 }
