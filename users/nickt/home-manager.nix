@@ -7,10 +7,14 @@
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
     ./../../pkgs/htop.nix
+    ./../../pkgs/i3
     ./../../pkgs/jetbrains.nix
     ./../../pkgs/tmux
     ./../../pkgs/vim
+    ./wallpaper.nix
   ];
+
+  xdg.enable = true;
 
   home.packages = (with pkgs; [
     autoconf

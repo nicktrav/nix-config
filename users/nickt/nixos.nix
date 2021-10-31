@@ -21,12 +21,4 @@
       ./authorized_keys
     ];
   };
-
-  # Create a Development directory.
-  system.activationScripts = {
-    mnt = {
-      text = "if [ ! -d /home/nickt/Development ] ; then mkdir /home/nickt/Development; fi";
-      deps = [];
-    };
-  };
 }

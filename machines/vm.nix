@@ -47,14 +47,24 @@
   services.xserver = {
     enable = true;
     layout = "us";
+    dpi = 220;
 
     desktopManager = {
-      gnome.enable = true;
+      xterm.enable = false;
       wallpaper.mode = "scale";
     };
 
     displayManager = {
-      gdm.enable = true;
+      defaultSession = "none+i3";
+      lightdm.enable = true;
+
+      sessionCommands = ''
+        ${pkgs.xlibs.xset}/bin/xset r rate 200 40
+      '';
+    };
+
+    windowManager = {
+      i3.enable = true;
     };
   };
 

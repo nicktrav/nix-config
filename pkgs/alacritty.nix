@@ -31,9 +31,7 @@
       font = {
         antialias = true;
         family = "Inconsolata";
-        normal = {
-          size = 12.0;
-        };
+        size = 20.0;
       };
       live_config_reload = true;
       window = {
@@ -44,6 +42,18 @@
         };
         startup_mode = "Maximized";
       };
+      key_bindings = [
+        {
+          key = "Minus";
+          mods = "Super";
+          action = "None";
+        }
+        {
+          key = "Backslash";
+          mods = "Super";
+          action = "None";
+        }
+      ];
     };
   };
 }
