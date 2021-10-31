@@ -6,7 +6,7 @@ set $mod mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Inconsolata 12
+font pango:"Inconsolata-dz for Powerline" 10
 
 # Window visuals
 new_window pixel 2
@@ -32,6 +32,9 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+
+# Launcher
+bindsym $mod+d exec rofi -show run
 
 # kill focused window
 bindsym $mod+Shift+w kill
@@ -100,7 +103,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
