@@ -1,12 +1,12 @@
 configuration {
   dpi: 220;
-  font: "Inconsolata-dz for Powerline 12";
+  font: "NotoSansMono Nerd Font 12";
 }
 
 * {
-    foreground: #f8f8f2;
-    background-color: #282a36;
-    active-background: #6272a4;
+    foreground: #dfdfdf;
+    background-color: #222;
+    active-background: #4444;
     urgent-background: #ff5555;
     selected-background: @active-background;
     selected-urgent-background: @urgent-background;

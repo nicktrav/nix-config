@@ -210,7 +210,10 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 " Highlight whitespace and tabs
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+
+" Disable tmuxline
+"let g:airline#extensions#tmuxline#enabled = 0
+
 " -----------------------------------------------------------------------------
 "   Spelling
 " -----------------------------------------------------------------------------

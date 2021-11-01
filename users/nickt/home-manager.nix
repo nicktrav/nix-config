@@ -30,6 +30,7 @@
     gnumake
     openjdk
     jq
+    killall
     kubectx
     kubectl
     libedit

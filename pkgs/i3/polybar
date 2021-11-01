@@ -1,0 +1,162 @@
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #888
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/top]
+width = 100%
+height = 2.5%
+radius = 6.0
+fixed-center = false
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+line-size = 2
+padding = 1
+module-margin = 1
+
+font-0 = "NotoSansMono Nerd Font:size=20;1"
+font-1 = "NotoSansMono Nerd Font:size=20;1"
+font-2 = "NotoSansMono Nerd Font:size=20;1"
+font-3 = "NotoSansMono Nerd Font:size=20;1"
+
+modules-left = i3
+modules-center = xwindow
+modules-right = net filesystem cpu memory hostname
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 24
+
+[bar/bottom]
+width = 100%
+height = 1.5%
+radius = 6.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+line-size = 2
+padding = 1
+module-margin = 1
+
+font-0 = "NotoSansMono Nerd Font:size=20;1"
+font-1 = "NotoSansMono Nerd Font:size=20;1"
+font-2 = "NotoSansMono Nerd Font:size=20;1"
+font-3 = "NotoSansMono Nerd Font:size=20;1"
+
+modules-center = date
+
+[global/wm]
+margin-top = 0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+
+strip-wsnumbers = true
+
+ws-icon-0 = 1:Web;爵
+ws-icon-1 = 2:Term;
+ws-icon-2 = 3:Editor;
+ws-icon-default =
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+label-focused-padding = 1
+
+label-unfocused-padding = 1
+
+label-visible-underline = #555555
+label-visible-padding = 1
+
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = #ffb52a
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "﬙ "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used:2%%
+
+[module/net]
+type = internal/network
+interface = ens33
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%a %d"
+date-alt = %a %b %d
+
+time = %I:%M
+time-alt = %I:%M%p
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+
+[module/hostname]
+type = custom/script
+
+exec = hostname
+interval = 90
+
+format-prefix = " "
+format-underline = #fba922
+
+[settings]
+screenchange-reload = true
+
+; vim:ft=dosini

@@ -76,6 +76,8 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       inconsolata
+      inconsolata-nerdfont
+      nerdfonts
       powerline-fonts
     ];
   };

@@ -23,7 +23,7 @@ in {
       rust-vim
       syntastic
       tagbar
-      tmuxline
+      #tmuxline
       unite
       vim-airline
       vim-airline-themes
