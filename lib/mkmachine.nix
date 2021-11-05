@@ -20,8 +20,8 @@ nixpkgs.lib.nixosSystem rec {
   in [
     defaults
     home-manager.nixosModules.home-manager
-    ../hardware/vm.nix
-    ../machines/vm.nix
+    ../hardware/${name}.nix
+    ../machines/${name}.nix
     ../users/nickt/nixos.nix
   ];
 

@@ -22,6 +22,11 @@
         system = "x86_64-linux";
         user   = "nickt";
       };
+      x1 = mkmachine "x1" {
+        inherit nixpkgs nixpkgs-unstable home-manager;
+        system = "x86_64-linux";
+        user   = "nickt";
+      };
     };
   };
 }
