@@ -10,20 +10,23 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "github:NIxOS/nixos-hardware";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware }:
   let
     mkmachine = import ./lib/mkmachine.nix;
   in {
     nixosConfigurations = {
       vm = mkmachine "vm" {
-        inherit nixpkgs nixpkgs-unstable home-manager;
+        inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
         system = "x86_64-linux";
         user   = "nickt";
       };
       x1 = mkmachine "x1" {
-        inherit nixpkgs nixpkgs-unstable home-manager;
+        inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
         system = "x86_64-linux";
         user   = "nickt";
       };

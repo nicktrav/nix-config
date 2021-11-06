@@ -1,6 +1,6 @@
 # This function creates a NixOS system based on our VM setup for a
 # particular architecture.
-name: { nixpkgs, nixpkgs-unstable, home-manager, system, user }:
+name: { nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, system, user }:
 
 nixpkgs.lib.nixosSystem rec {
   inherit system;
