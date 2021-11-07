@@ -27,4 +27,7 @@
   }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 }
