@@ -11,6 +11,9 @@
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
   # Tailscale networking.
+  nixpkgs.overlays = [
+    (import ../overlays/tailscale.nix)
+  ];
   environment.systemPackages = with pkgs; [
     tailscale
   ];
