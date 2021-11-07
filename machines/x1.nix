@@ -32,4 +32,9 @@
       };
     };
   };
+
+  # Remain open with the lid closed.
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+  '';
 }
