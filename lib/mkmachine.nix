@@ -2,6 +2,11 @@
 # particular architecture.
 name: { nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, system, user }:
 
+let
+  pkgs = nixpkgs;
+  lib = pkgs.lib;
+
+in
 nixpkgs.lib.nixosSystem rec {
   inherit system;
 
@@ -20,7 +25,7 @@ nixpkgs.lib.nixosSystem rec {
   in [
     defaults
     home-manager.nixosModules.home-manager
-    ../hardware/${name}.nix
+    (import ../hardware/${name}.nix { inherit lib pkgs nixos-hardware; })
     ../machines/${name}.nix
     ../users/nickt/nixos.nix
   ];

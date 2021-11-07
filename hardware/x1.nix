@@ -1,8 +1,8 @@
-{ config, lib, pkgs, modulesPath, nixos-hardware, ... }:
+{ lib, pkgs, nixos-hardware, ... }:
 
 {
   imports = [
-    nixos-hardware.nixosModulse.lenovo-thinkpad-x1-7th-gen
+    nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
   ];
 
   boot.initrd.availableKernelModules = [
@@ -12,15 +12,15 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/boot";
+    fsType = "vfat";
+  };
 
   swapDevices = [{
     device = "/dev/disk/by-label/swap";
