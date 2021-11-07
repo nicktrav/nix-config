@@ -30,6 +30,9 @@
   # generated config replicates the default behaviour.
   networking.useDHCP = false;
 
+  # Enable the Network Manager CLI.
+  networking.networkmanager.enable = true;
+
   # Don't require password for sudo.
   security.sudo.wheelNeedsPassword = false;
 
