@@ -81,10 +81,21 @@ if hash "rustc" &> /dev/null; then
 fi
 
 # Nix
+
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
   # shellcheck disable=SC1091
   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
+
+if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+  # shellcheck disable=SC1091
+  source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
+
+# XDG.
+
+#export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
+#xdg-settings set default-web-browser google-chrome.desktop
 
 # SSH with a Yubikey
 export SSH_AUTH_SOCK=~/.ssh/yubikey-ssh.sock
@@ -108,5 +119,4 @@ if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
   restart-ssh-agent
 fi
 
-unset command_not_found_handle
-#if [ -e /home/nickt/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nickt/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+#unset command_not_found_handle
