@@ -66,3 +66,5 @@
 [gc]
   auto = 50000
   autopacklimit = 500
+[init]
+  defaultBranch = main
