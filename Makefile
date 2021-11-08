@@ -6,12 +6,12 @@ NIXBLOCKDEVICE ?= sda
 
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-.PHONY: vm/ssh
-vm/ssh:
+.PHONY: ssh
+ssh:
 	ssh $(NIXUSER)@$(NIXADDR)
 
-.PHONY: vm/bootstrap
-vm/bootstrap:
+.PHONY: bootstrap
+bootstrap:
 	ssh root@$(NIXADDR) " \
 		parted /dev/$(NIXBLOCKDEVICE) -- mklabel gpt; \
 		parted /dev/$(NIXBLOCKDEVICE) -- mkpart primary 512MiB -8GiB; \
@@ -37,12 +37,12 @@ vm/bootstrap:
 		reboot; \
 	"
 
-.PHONY: vm/setup
-vm/setup:
+.PHONY: setup
+setup:
 	NIXUSER=root $(MAKE) vm/copy
 
-.PHONY: vm/copy
-vm/copy:
+.PHONY: copy
+copy:
 	rsync -av -e 'ssh -p$(NIXPORT)' \
 		--exclude='.git/' \
 		--exclude='*.swp' \
