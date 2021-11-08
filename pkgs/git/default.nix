@@ -10,11 +10,14 @@ in {
       { path = "~/.config/git/.gitconfig"; }
     ];
     ignores = [
+      ".direnv/"
+      ".envrc"
+      ".idea/"
+      ".ijwb/"
       "*.swn"
       "*.swo"
       "*.swp"
-      ".idea/"
-      ".ijwb/"
+      "shell.nix"
     ];
   };
 

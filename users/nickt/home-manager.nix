@@ -4,6 +4,7 @@
   imports = [
     ./../../pkgs/alacritty.nix
     ./../../pkgs/bash
+    ./../../pkgs/direnv.nix
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
     ./../../pkgs/htop.nix
