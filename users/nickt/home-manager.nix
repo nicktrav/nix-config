@@ -19,51 +19,29 @@
   xdg.enable = true;
 
   home.packages = (with pkgs; [
-    autoconf
     binutils
     certigo
-    cmake
     curl
     dig
     file
-    firefox
-    gcc
-    gnumake
-    openjdk
     jq
-    killall
-    kubectx
-    kubectl
-    libedit
     lsof
-    m4
-    ncurses
     nix-prefetch-git
-    nix-index
-    nodejs
     opensc
-    patchelf
     ripgrep
     shellcheck
     ssh-agents
-    stdenv.cc.cc.lib
     tree
     unzip
     usbutils
-    wget
     whois
-    yacc
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
   ]) ++ (with pkgs-unstable; [
     _1password
     _1password-gui
-    bazel_4
-    bazelisk
     go
-    go-tools
-    golint
     google-chrome
   ]);
 }
