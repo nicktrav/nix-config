@@ -37,7 +37,8 @@
   };
 
   # Remain open with the lid closed.
-  services.logind.extraConfig = ''
-    HandleLidSwitch=ignore
-  '';
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
 }
