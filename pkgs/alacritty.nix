@@ -30,7 +30,9 @@
       };
       font = {
         antialias = true;
-        family = "Inconsolata-dz for Powerline";
+        normal = {
+          family = "Inconsolata-dz for Powerline";
+        };
         size = 12.0;
       };
       live_config_reload = true;
