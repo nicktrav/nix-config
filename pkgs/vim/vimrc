@@ -217,8 +217,7 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 " -----------------------------------------------------------------------------
 "   Spelling
 " -----------------------------------------------------------------------------
-" Turn on spelling for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell complete+=kspell
-
-" Highlight bad words in red
-autocmd BufRead,BufNewFile *.md hi SpellBad guibg=#ff2929 guifg=#ffffff" ctermbg=224
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=white ctermbg=red
