@@ -97,6 +97,8 @@ in {
     tree
     unzip
     usbutils
+    whois
+    xclip
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
