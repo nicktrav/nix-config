@@ -38,6 +38,7 @@ in {
   imports = [
     ./../../pkgs/alacritty.nix
     ./../../pkgs/bash
+    ./../../pkgs/dict.nix
     ./../../pkgs/direnv.nix
     (import ./../../pkgs/chrome { inherit pkgs pkgs-unstable; })
     ./../../pkgs/fzf.nix
