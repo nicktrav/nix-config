@@ -70,7 +70,7 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Remember cursor position between vim sessions
 autocmd BufReadPost *
