@@ -5,6 +5,9 @@
     ./shared.nix
   ];
 
+  # Use a more recent Linux kernel.
+  boot.kernelPackages = pkgs.linuxPackages_5_14;
+
   # Enable host-specific interfaces.
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.enp45s0u2.useDHCP = true;
