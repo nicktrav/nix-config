@@ -1,4 +1,5 @@
 { ... }:
+
 {
-  home.file.".background-image".source = ../../images/nix-wallpaper-dracula.png;
+  home.file.".background-image".source = ../../images/wallpaper.jpg;
 }

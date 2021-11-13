@@ -2,8 +2,8 @@
 
 {
   xsession.pointerCursor = {
-    package = pkgs.vanilla-dmz;
-    name = "Vanilla-DMZ";
-    size = 128;
+    package = pkgs.gnome-breeze;
+    name = "Breeze-gtk";
+    size = 16;
   };
 }

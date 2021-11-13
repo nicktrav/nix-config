@@ -1,12 +1,31 @@
 { config, pkgs, ... }:
 
-{
+let
+  keyboardLayout = pkgs.writeText "xkb-layout" ''
+    ! Re-map escape to caps lock
+    remove lock = Caps_Lock
+    keycode 66 = Escape NoSymbol Escape
+
+    ! Exchange left alt and left win
+    remove mod1 = Alt_L
+    remove mod4 = Super_L
+    add mod1 = Super_L
+    add mod4 = Alt_L
+  '';
+
+in {
   imports = [
     ./shared.nix
   ];
 
   # Use a more recent Linux kernel.
   boot.kernelPackages = pkgs.linuxPackages_5_14;
+
+  # System packages.
+  environment.systemPackages = with pkgs; [
+    tailscale
+    xorg.xmodmap
+  ];
 
   # Enable host-specific interfaces.
   networking.interfaces.enp0s31f6.useDHCP = true;
@@ -16,9 +35,6 @@
   # Tailscale networking.
   nixpkgs.overlays = [
     (import ../overlays/tailscale.nix)
-  ];
-  environment.systemPackages = with pkgs; [
-    tailscale
   ];
   services.tailscale.enable = true;
 
@@ -43,5 +59,12 @@
   services.logind = {
     lidSwitch = "ignore";
     lidSwitchExternalPower = "ignore";
+  };
+
+  # Remap keys.
+  services.xserver = {
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xmodmap}/bin/xmodmap ${keyboardLayout}
+    '';
   };
 }

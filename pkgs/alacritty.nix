@@ -33,7 +33,7 @@
         normal = {
           family = "Inconsolata-dz for Powerline";
         };
-        size = 12.0;
+        size = 6.0;
       };
       live_config_reload = true;
       window = {

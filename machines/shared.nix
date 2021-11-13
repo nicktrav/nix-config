@@ -46,7 +46,6 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    dpi = 220;
 
     desktopManager = {
       xterm.enable = false;
@@ -56,10 +55,6 @@
     displayManager = {
       defaultSession = "none+i3";
       lightdm.enable = true;
-
-      sessionCommands = ''
-        ${pkgs.xlibs.xset}/bin/xset r rate 200 40
-      '';
     };
 
     windowManager = {
@@ -83,7 +78,7 @@
 
   # System packages.
   environment.systemPackages = with pkgs; [
-    gnome3.gnome-tweaks
+    killall
     moreutils
   ];
 
