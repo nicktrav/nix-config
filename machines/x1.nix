@@ -18,6 +18,12 @@ in {
     ./shared.nix
   ];
 
+  # Overlays.
+  nixpkgs.overlays = [
+    (import ../overlays/nix-direnv.nix)
+    (import ../overlays/tailscale.nix)
+  ];
+
   # Use a more recent Linux kernel.
   boot.kernelPackages = pkgs.linuxPackages_5_14;
 
@@ -33,9 +39,6 @@ in {
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
   # Tailscale networking.
-  nixpkgs.overlays = [
-    (import ../overlays/tailscale.nix)
-  ];
   services.tailscale.enable = true;
 
   # Firewall.
