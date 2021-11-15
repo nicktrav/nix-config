@@ -20,9 +20,11 @@
   xdg.enable = true;
 
   home.packages = (with pkgs; [
+    bat
     binutils
     certigo
     curl
+    delve
     dig
     file
     jq
@@ -30,6 +32,9 @@
     nix-prefetch-git
     opensc
     ripgrep
+    rust-analyzer
+    rustup
+    rsync
     shellcheck
     ssh-agents
     tree
@@ -45,5 +50,6 @@
     _1password-gui
     go
     google-chrome
+    gopls
   ]);
 }
