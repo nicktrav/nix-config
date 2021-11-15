@@ -59,9 +59,11 @@ in {
   fonts.fontconfig.enable = true;
 
   home.packages = (with pkgs; [
+    bat
     binutils
     certigo
     curl
+    delve
     dig
     file
     firefox
@@ -82,6 +84,7 @@ in {
     powerline-fonts
     nix-index
     nodejs
+    nodePackages.bash-language-server
     openjdk
     #opensc
     #openssh
@@ -92,6 +95,8 @@ in {
     patchelf
     powerline-fonts
     ripgrep
+    rust-analyzer
+    rustup
     rsync
     shellcheck
     ssh-agents
@@ -110,6 +115,7 @@ in {
     go-tools
     golint
     google-chrome
+    gopls
   ]);
 
   news.display = "silent";
