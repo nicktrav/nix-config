@@ -101,6 +101,9 @@ set laststatus=2
 " Ignore certain file types
 let NERDTreeIgnore = ['\.swp$', '\.swo$']
 
+" Navigate to open file.
+map <leader>n :NERDTreeFind<cr>
+
 " -----------------------------------------------------------------------------
 "   Fugitive
 " -----------------------------------------------------------------------------
