@@ -11,6 +11,7 @@ noremap <Right> <NOP>
 " Close a buffer by first switching to the next buffer and then closing out
 " the buffer from which we came
 nnoremap c :bp\|bd #<CR>
+nnoremap <Leader>q :bp\|bd #<CR>
 
 " Remap semicolon to colon
 nnoremap ; :
