@@ -2,9 +2,6 @@
 "   Mappings
 " -----------------------------------------------------------------------------
 
-" Distraction free editing
-nmap <Leader>G :Goyo<CR>
-
 " Turning off arrow key - beacuse that's just lazy
 noremap <Up> <NOP>
 noremap <Down> <NOP>
