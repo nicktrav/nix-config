@@ -75,7 +75,6 @@ in
       vim-fugitive
       vim-go
       vim-hcl
-      vim-multiple-cursors
       vim-nix
       vim-tmux
       vim-tmux-focus-events
