@@ -53,7 +53,6 @@ in {
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
-      fzf-vim
       gitgutter
       lsp-colors-nvim
       lsp_extensions-nvim
@@ -64,11 +63,11 @@ in {
       nvim-lspconfig
       nvim-lsputils
       nvim-treesitter
+      plenary-nvim
       popfix
       rust-vim
       syntastic
-      tagbar
-      unite
+      telescope-nvim
       vim-airline
       vim-airline-themes
       vim-fugitive
@@ -76,14 +75,10 @@ in {
       vim-hcl
       vim-multiple-cursors
       vim-nix
-      vim-surround
       vim-tmux
       vim-tmux-focus-events
       vim-tmux-navigator
-      vim-unimpaired
-      vimproc
       vimspector
-      vimwiki
     ]) ++ [
       vim-godebug
     ];
