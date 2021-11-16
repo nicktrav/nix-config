@@ -32,6 +32,7 @@
     nix-prefetch-git
     opensc
     ripgrep
+    rnix-lsp
     rust-analyzer
     rustup
     rsync
