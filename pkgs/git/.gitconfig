@@ -59,6 +59,9 @@
   nit = commit --amend --no-edit
   praise = blame
   ri = rebase -i
+  rp = rev-parse
+  rph = rev-parse HEAD
+  rphs = rev-parse --short HEAD
 [rerere]
   enabled = 1
 [pull]
