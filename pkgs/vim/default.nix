@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }:
+
 let
 
   # nvim-cmp with cmdline support is not yet in release-21.05. Build it
@@ -42,7 +43,8 @@ let
     meta.homepage = "https://github.com/jodosha/vim-godebug";
   };
 
-in {
+in
+{
   programs.neovim = {
     enable = true;
     vimAlias = true;

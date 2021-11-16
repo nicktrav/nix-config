@@ -11,11 +11,14 @@ let
   pkgs-unstable = import nixpkgs_latest { };
 
   nixglRev = "c4aa5aa15af5d75e2f614a70063a2d341e8e3461";
-  nixgl = import (builtins.fetchTarball {
-    url = "github.com/guibou/nixGL/archive/${nixglRev}.tar.gz";
-  }) { };
+  nixgl = import
+    (builtins.fetchTarball {
+      url = "github.com/guibou/nixGL/archive/${nixglRev}.tar.gz";
+    })
+    { };
 
-in {
+in
+{
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -53,8 +56,8 @@ in {
   ];
 
   xdg.enable = true;
-  xdg.mime.enable=true;
-  targets.genericLinux.enable=true;
+  xdg.mime.enable = true;
+  targets.genericLinux.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -95,6 +98,7 @@ in {
     patchelf
     powerline-fonts
     ripgrep
+    rnix-lsp
     rust-analyzer
     rustup
     rsync
