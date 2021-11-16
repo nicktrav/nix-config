@@ -396,3 +396,4 @@ autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=white ctermbg=red
+hi SpellBad cterm=underline guifg=white guibg=red
