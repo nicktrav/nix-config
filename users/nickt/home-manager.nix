@@ -49,7 +49,7 @@
   ]) ++ (with pkgs-unstable; [
     _1password
     _1password-gui
-    go
+    go_1_17
     google-chrome
     gopls
   ]);

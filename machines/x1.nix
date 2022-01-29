@@ -21,11 +21,10 @@ in {
   # Overlays.
   nixpkgs.overlays = [
     (import ../overlays/nix-direnv.nix)
-    (import ../overlays/tailscale.nix)
   ];
 
   # Use a more recent Linux kernel.
-  boot.kernelPackages = pkgs.linuxPackages_5_14;
+  boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   # System packages.
   environment.systemPackages = with pkgs; [

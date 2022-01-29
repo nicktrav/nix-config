@@ -80,6 +80,7 @@
   environment.systemPackages = with pkgs; [
     killall
     moreutils
+    gcc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are started
@@ -119,5 +120,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 }
