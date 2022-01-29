@@ -2,6 +2,13 @@
 
 {
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Install home-manager.
   # NOTE: this relies on the channel being added.
   # TODO(nickt): Add channel command.

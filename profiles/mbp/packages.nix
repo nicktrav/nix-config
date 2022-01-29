@@ -2,10 +2,10 @@
 
 let
 
-  latestSHA = "91cd6f62079ada68bdd9a45fbbf181522bf51e44";
-  nixpkgs-latest = builtins.fetchTarball {
-    url = "github.com/NixOS/nixpkgs/archive/${latestSHA}.tar.gz";
-    sha256 = "03sn3fhlxj7mkr6zz3r6irf0gs8rz88ypi0rx6adn9kj9wrgigzz";
+  nixpkgs-latest = pkgs.fetchgit {
+    url = https://github.com/NixOS/nixpkgs;
+    rev = "46450f2f65f117459157e4ea90e39c6601e38109"; # nixpkgs-21.11-darwin
+    sha256 = "134j3ph5q874jrxy9l4bszq1zwpiwvmf916igav5a4bybc0a1i49";
   };
   pkgs-latest = import nixpkgs-latest {};
 
@@ -53,6 +53,7 @@ in {
     kubectl
     libtool
     lsof
+    nix-prefetch-git
     nodejs
     opensc
     ripgrep
