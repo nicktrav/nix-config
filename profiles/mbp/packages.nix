@@ -2,10 +2,10 @@
 
 let
 
-  latestSHA = "6ba79a5320e82b139452d49e6620c5ddfc2f02e8";
+  latestSHA = "91cd6f62079ada68bdd9a45fbbf181522bf51e44";
   nixpkgs-latest = builtins.fetchTarball {
     url = "github.com/NixOS/nixpkgs/archive/${latestSHA}.tar.gz";
-    sha256 = "1j9wnawgyfix0jz4c25iz2xm9ygbs6zz87hrqkwf4a0cizxchxr6";
+    sha256 = "03sn3fhlxj7mkr6zz3r6irf0gs8rz88ypi0rx6adn9kj9wrgigzz";
   };
   pkgs-latest = import nixpkgs-latest {};
 
@@ -72,7 +72,7 @@ in {
   # Home-manager packages from a more recent, pinned nixpkgs SHA.
   (with pkgs-latest; [
     awscli2
-    go
+    go_1_17
   ]) ++
   # Custom packages.
   [
