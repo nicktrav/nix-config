@@ -55,6 +55,7 @@ in
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
+      fzf-vim
       gitgutter
       lsp-colors-nvim
       lsp_extensions-nvim

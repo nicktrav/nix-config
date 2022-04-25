@@ -8,6 +8,14 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" Find files with fzf
+nmap <Leader>t :Files<CR>
+nmap <Leader>b :Buffers<CR>
+
+" Search contents of files with ripgrep
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+nmap <Leader>f :Find<CR>
+
 " Close a buffer by first switching to the next buffer and then closing out
 " the buffer from which we came
 nnoremap c :bp\|bd #<CR>
@@ -312,36 +320,6 @@ set cmdheight=2
 set updatetime=300
 
 " -----------------------------------------------------------------------------
-"   Search
-" -----------------------------------------------------------------------------
-
-nnoremap <Leader>t <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <Leader>T <cmd>lua require('telescope.builtin').file_browser()<cr>
-nnoremap <Leader>f <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <Leader>b <cmd>Telescope buffers<cr>
-nnoremap <Leader>H <cmd>Telescope help_tags<cr>
-nnoremap <Leader>D <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
-
-lua << EOF
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-i>"] = actions.move_selection_previous,
-        ["<C-k>"] = actions.move_selection_next,
-      },
-    },
-  },
-  pickers = {
-    buffers = {
-      sort_lastused = true
-    },
-  },
-}
-EOF
-
-" -----------------------------------------------------------------------------
 "   Go
 " -----------------------------------------------------------------------------
 "
@@ -397,3 +375,33 @@ autocmd FileType markdown setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=white ctermbg=red
 hi SpellBad cterm=underline guifg=white guibg=red
+
+" -----------------------------------------------------------------------------
+"   Search
+" -----------------------------------------------------------------------------
+
+nnoremap <Leader>t <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <Leader>T <cmd>lua require('telescope.builtin').file_browser()<cr>
+nnoremap <Leader>f <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <Leader>b <cmd>Telescope buffers<cr>
+nnoremap <Leader>H <cmd>Telescope help_tags<cr>
+nnoremap <Leader>D <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-i>"] = actions.move_selection_previous,
+        ["<C-k>"] = actions.move_selection_next,
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    },
+  },
+}
+EOF

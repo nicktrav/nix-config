@@ -16,20 +16,22 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware }:
-  let
-    mkmachine = import ./lib/mkmachine.nix;
-  in {
-    nixosConfigurations = {
-      vm = mkmachine "vm" {
-        inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
-        system = "x86_64-linux";
-        user   = "nickt";
-      };
-      x1 = mkmachine "x1" {
-        inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
-        system = "x86_64-linux";
-        user   = "nickt";
+    let
+      mkmachine = import ./lib/mkmachine.nix;
+    in
+    {
+      inherit nixpkgs;
+      nixosConfigurations = {
+        vm = mkmachine "vm" {
+          inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
+          system = "x86_64-linux";
+          user = "nickt";
+        };
+        x1 = mkmachine "x1" {
+          inherit nixpkgs nixpkgs-unstable home-manager nixos-hardware;
+          system = "x86_64-linux";
+          user = "nickt";
+        };
       };
     };
-  };
 }

@@ -28,6 +28,7 @@
     dig
     file
     jq
+    libstdcxx5
     lsof
     nix-prefetch-git
     opensc
