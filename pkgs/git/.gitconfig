@@ -71,3 +71,5 @@
   autopacklimit = 500
 [init]
   defaultBranch = main
+[safe]
+  directory = '/home/nickt/Development/nix-config'

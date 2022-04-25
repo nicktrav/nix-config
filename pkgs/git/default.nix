@@ -1,10 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, pkgs-unstable, config, ... }:
 
 let
-  git-tidy-up = pkgs.writeShellScriptBin "git-tidy-up" (builtins.readFile ./git-tidy-up );
+  git-tidy-up = pkgs.writeShellScriptBin "git-tidy-up" (builtins.readFile ./git-tidy-up);
 
-in {
+in
+{
   programs.git = {
+    package = pkgs-unstable.git;
     enable = true;
     includes = [
       { path = "~/.config/git/.gitconfig"; }

@@ -4,7 +4,7 @@ configuration {
 
 * {
     foreground:                 #dfdfdf;
-    background-color:           #222222;
+    background:                 #222222;
     active-background:          #444444;
     urgent-background:          #ff5555;
     selected-background:        @active-background;
