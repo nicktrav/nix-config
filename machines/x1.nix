@@ -25,6 +25,7 @@ in
 
   # Overlays.
   nixpkgs.overlays = [
+    (import ../overlays/chrome.nix)
     (import ../overlays/nix-direnv.nix)
   ];
 

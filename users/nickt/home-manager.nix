@@ -27,6 +27,7 @@
     delve
     dig
     file
+    google-chrome
     jq
     libstdcxx5
     lsof
@@ -51,7 +52,6 @@
     _1password
     _1password-gui
     go_1_17
-    google-chrome
     gopls
   ]);
 }
