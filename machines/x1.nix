@@ -33,10 +33,15 @@ in
   boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   # Enable host-specific interfaces.
-  networking.interfaces.enp0s31f6.useDHCP = false;
-  networking.interfaces.enp45s0u2.useDHCP = false;
-  networking.interfaces.wlp0s20f3.useDHCP = false;
-  networking.networkmanager.enable = true;
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.enp45s0u2.useDHCP = true;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
+
+  # Allow user logins after basic system initialization. This avoids having to
+  # wait for all network interfaces to obtain a DHCP lease before a user can
+  # log in.
+  # See: https://github.com/NixOS/nixpkgs/issues/60900
+  systemd.services.systemd-user-sessions.enable = false;
 
   # Tailscale networking.
   services.tailscale.enable = true;
