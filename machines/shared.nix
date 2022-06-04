@@ -1,9 +1,7 @@
 { config, pkgs, lib, currentSystem, ... }:
 
 {
-  # Use unstable nix so we can access flakes.
   nix = {
-    package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';

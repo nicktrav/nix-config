@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -20,6 +20,8 @@
   xdg.enable = true;
 
   home.packages = (with pkgs; [
+    _1password
+    _1password-gui
     bat
     binutils
     certigo
@@ -27,7 +29,9 @@
     delve
     dig
     file
+    go_1_17
     google-chrome
+    gopls
     jq
     libstdcxx5
     lsof
@@ -48,10 +52,5 @@
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
-  ]) ++ (with pkgs-unstable; [
-    _1password
-    _1password-gui
-    go_1_17
-    gopls
   ]);
 }
