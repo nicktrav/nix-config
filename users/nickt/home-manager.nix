@@ -36,6 +36,7 @@
     libstdcxx5
     lsof
     nix-prefetch-git
+    nodejs
     opensc
     ripgrep
     rnix-lsp
@@ -45,6 +46,7 @@
     shellcheck
     ssh-agents
     tree
+    tree-sitter
     unzip
     usbutils
     whois
