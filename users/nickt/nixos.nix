@@ -1,11 +1,10 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.nickt = { ... }: {
-    _module.args.pkgs-unstable = nixpkgs-unstable;
-    home.stateVersion = "21.05";
+    home.stateVersion = "22.05";
     imports = [
       ./home-manager.nix
     ];
