@@ -29,7 +29,7 @@
     delve
     dig
     file
-    go_1_17
+    go_1_18
     google-chrome
     gopls
     jq
