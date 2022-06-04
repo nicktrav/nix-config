@@ -30,7 +30,7 @@ in
   ];
 
   # Use a more recent Linux kernel.
-  boot.kernelPackages = pkgs.linuxPackages_5_16;
+  boot.kernelPackages = pkgs.linuxPackages_5_18;
 
   # Enable host-specific interfaces.
   networking.interfaces.enp0s31f6.useDHCP = true;
@@ -61,6 +61,7 @@ in
         allowedTCPPorts = [ 22 ];
       };
     };
+    checkReversePath = "loose";
   };
 
   # Remain open with the lid closed.

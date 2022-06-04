@@ -92,7 +92,7 @@
     enable = true;
     passwordAuthentication = false;
     permitRootLogin = "no";
-    challengeResponseAuthentication = false;
+    kbdInteractiveAuthentication = false;
   };
 
   # Smartcard support.
