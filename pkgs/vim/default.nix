@@ -58,6 +58,11 @@ in
     extraConfig = builtins.readFile ./vimrc;
   };
 
+  home.packages = with pkgs; [
+    rnix-lsp
+    tree-sitter
+  ];
+
   xdg.configFile."vim/Tomorrow-Night.vim".text =
     builtins.readFile ./Tomorrow-Night.vim;
 

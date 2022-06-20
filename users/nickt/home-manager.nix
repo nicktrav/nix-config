@@ -8,9 +8,11 @@
     ./../../pkgs/direnv.nix
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
+    ./../../pkgs/go
     ./../../pkgs/htop.nix
     ./../../pkgs/i3
     ./../../pkgs/jetbrains
+    ./../../pkgs/rust
     ./../../pkgs/tmux
     ./../../pkgs/vim
     ./../../pkgs/x
@@ -22,16 +24,12 @@
   home.packages = (with pkgs; [
     _1password
     _1password-gui
-    bat
     binutils
     certigo
     curl
-    delve
     dig
     file
-    go_1_18
     google-chrome
-    gopls
     jq
     libstdcxx5
     lsof
@@ -39,14 +37,10 @@
     nodejs
     opensc
     ripgrep
-    rnix-lsp
-    rust-analyzer
-    rustup
     rsync
     shellcheck
     ssh-agents
     tree
-    tree-sitter
     unzip
     usbutils
     whois
