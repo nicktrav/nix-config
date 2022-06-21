@@ -138,6 +138,12 @@ function _kube_cluster() {
   fi
 }
 
-_PS1="$YELLOW\\u$NO_COLOUR:\\w$(_git_prompt)"
+# Indicate whether we are in an SSH session or not.
+_ssh=""
+if [[ -n "$SSH_CLIENT" ]]; then
+  _ssh="${GREEN}(ssh)${NO_COLOUR} "
+fi
+
+_PS1="${_ssh}$YELLOW\\u$NO_COLOUR:\\w$(_git_prompt)"
 export _PS1
 export PROMPT_COMMAND='export PS1="$(_last_status)${_PS1} $(_git_prompt)$(_kube_cluster)\n$ "'
