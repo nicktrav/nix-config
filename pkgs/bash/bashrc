@@ -87,7 +87,14 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 fi
 
 # SSH with a Yubikey
-export SSH_AUTH_SOCK=~/.ssh/yubikey-ssh.sock
+
+if [ ! -n "$SSH_CLIENT" ]; then
+  # Only export SSH_AUTH_SOCK if this is _not_ an ssh session. This allows an
+  # incoming ssh session to use any ssh-agent that was spawned for it, which
+  # will contain the configuration for any forwarded keys.
+  export SSH_AUTH_SOCK=~/.ssh/yubikey-ssh.sock
+fi
+
 function restart-ssh-agent() {
   pkill ssh-agent
   eval "ssh-agent -a $SSH_AUTH_SOCK -P $PKCS11_PATH" > /dev/null
