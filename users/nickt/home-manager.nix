@@ -9,6 +9,7 @@
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
     ./../../pkgs/go
+    ./../../pkgs/gpg
     ./../../pkgs/htop.nix
     ./../../pkgs/i3
     ./../../pkgs/jetbrains
@@ -36,6 +37,7 @@
     nix-prefetch-git
     nodejs
     opensc
+    pinentry
     ripgrep
     rsync
     shellcheck

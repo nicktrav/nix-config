@@ -33,4 +33,5 @@
 
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
+  hardware.gpgSmartcards.enable = true;
 }

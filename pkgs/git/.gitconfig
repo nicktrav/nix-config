@@ -1,6 +1,7 @@
 [user]
   name = Nick Travers
   email = n.e.travers@gmail.com
+  signingkey = CC43773C5F36E06E
 [push]
   config = default
   default = current
@@ -73,3 +74,5 @@
   defaultBranch = main
 [safe]
   directory = '/home/nickt/Development/nix-config'
+[commit]
+  gpgsign = true
