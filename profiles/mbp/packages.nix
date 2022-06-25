@@ -4,8 +4,8 @@ let
 
   nixpkgs-latest = pkgs.fetchgit {
     url = https://github.com/NixOS/nixpkgs;
-    rev = "46450f2f65f117459157e4ea90e39c6601e38109"; # nixpkgs-21.11-darwin
-    sha256 = "134j3ph5q874jrxy9l4bszq1zwpiwvmf916igav5a4bybc0a1i49";
+    rev = "52dc75a4fee3fdbcb792cb6fba009876b912bfe0"; # nixpkgs-unstable
+    sha256 = "1mc7qncf38agvyd589akch0war71gx5xwfli9lh046xqsqsbhhl0";
   };
   pkgs-latest = import nixpkgs-latest {};
 
@@ -73,7 +73,7 @@ in {
   # Home-manager packages from a more recent, pinned nixpkgs SHA.
   (with pkgs-latest; [
     awscli2
-    go_1_17
+    go_1_18
   ]) ++
   # Custom packages.
   [
