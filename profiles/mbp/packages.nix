@@ -43,6 +43,7 @@ in {
     file
     google-cloud-sdk
     gnumake
+    gnupg
     gnutar
     git-tidy-up
     go-tools
@@ -56,6 +57,7 @@ in {
     nix-prefetch-git
     nodejs
     opensc
+    patch
     ripgrep
     shellcheck
     openssh
