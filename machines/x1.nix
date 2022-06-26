@@ -26,7 +26,6 @@ in
   # Overlays.
   nixpkgs.overlays = [
     (import ../overlays/chrome.nix)
-    (import ../overlays/nix-direnv.nix)
   ];
 
   # Use a more recent Linux kernel.
