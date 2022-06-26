@@ -88,14 +88,16 @@ fi
 
 # SSH with a Yubikey
 
+_ssh_auth_sock=~/.ssh/yubikey-ssh.sock
 if [ -z "$SSH_CLIENT" ]; then
   # Only export SSH_AUTH_SOCK if this is _not_ an ssh session. This allows an
   # incoming ssh session to use any ssh-agent that was spawned for it, which
   # will contain the configuration for any forwarded keys.
-  export SSH_AUTH_SOCK=~/.ssh/yubikey-ssh.sock
+  export SSH_AUTH_SOCK="$_ssh_auth_sock"
 fi
 
 function restart-ssh-agent() {
+  rm -f "$_ssh_auth_sock"
   pkill ssh-agent
   eval "ssh-agent -a $SSH_AUTH_SOCK -P $PKCS11_PATH" > /dev/null
 
