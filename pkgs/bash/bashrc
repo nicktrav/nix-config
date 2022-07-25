@@ -40,46 +40,8 @@ export HISTCONTROL=ignoreboth
 # Supercharge fzf with ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,.pants}/*"'
 
-# OS specific configuration
-if [ -f ~/.bash_os_specific ]; then
-  # shellcheck source=/dev/null
-  source ~/.bash_os_specific
-fi
-
-# Local customized path and environment settings, etc.
-# This file isn't checked in, and should be provided instead.
-if [ -f ~/.bash_local ]; then
-  # shellcheck source=/dev/null
-  source ~/.bash_local
-fi
-
-# Paths that specific tools set (e.g. GCP)
-if [ -f ~/.paths ]; then
-  # shellcheck source=/dev/null
-  source ~/.paths
-fi
-
 # Add utility scripts to path
 export PATH=$HOME/bin:$PATH
-
-# Java
-export M2_HOME=/usr/local/src/maven
-export MAVEN_HOME="$M2_HOME"
-JAVA_HOME=$(readlink -e "$(type -p javac)" | sed  -e 's/\/bin\/javac//g')
-export JAVA_HOME
-
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-if hash "rustc" &> /dev/null; then
-  _sysroot=$(rustc --print sysroot)
-  export RUST_SRC_PATH="$_sysroot/lib/rustlib/src/rust/src/"
-fi
-
-# Nix
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-  # shellcheck disable=SC1091
-  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
 
 # SSH with a Yubikey
 
