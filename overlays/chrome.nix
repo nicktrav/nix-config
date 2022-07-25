@@ -3,7 +3,7 @@
 (self: super: {
   google-chrome =
     let
-      version = "103.0.5060.53";
+      version = "103.0.5060.134";
       channel = "stable";
 
     in
