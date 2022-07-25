@@ -13,6 +13,7 @@
     ./../../pkgs/htop.nix
     ./../../pkgs/i3
     ./../../pkgs/jetbrains
+    ./../../pkgs/opensc
     ./../../pkgs/rust
     ./../../pkgs/tmux
     ./../../pkgs/vim
@@ -36,7 +37,6 @@
     lsof
     nix-prefetch-git
     nodejs
-    opensc
     pinentry
     ripgrep
     rsync

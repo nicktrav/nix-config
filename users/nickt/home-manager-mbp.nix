@@ -14,6 +14,7 @@
     ./../../pkgs/git
     ./../../pkgs/go
     ./../../pkgs/htop.nix
+    ./../../pkgs/opensc
     ./../../pkgs/rust
     ./../../pkgs/tmux
     ./../../pkgs/vim
@@ -48,7 +49,6 @@
     lsof
     nix-prefetch-git
     nodejs
-    opensc
     patch
     ripgrep
     shellcheck

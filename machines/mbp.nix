@@ -34,11 +34,6 @@
     reattach-to-user-namespace
   ];
 
-  # TODO(nickt): Move the yubikey specific things into their own package.
-  environment.variables = {
-    "PKCS11_PATH" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
-  };
-
   # Used for backwards compatibility, please read the changelog before
   # changing.
   system.stateVersion = 4;
