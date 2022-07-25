@@ -62,11 +62,6 @@ fi
 # Add utility scripts to path
 export PATH=$HOME/bin:$PATH
 
-# Golang
-export GOPATH="$HOME/Development/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$GOBIN:$PATH"
-
 # Java
 export M2_HOME=/usr/local/src/maven
 export MAVEN_HOME="$M2_HOME"
@@ -118,4 +113,3 @@ if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
 fi
 
 unset command_not_found_handle
-#if [ -e /home/nickt/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nickt/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

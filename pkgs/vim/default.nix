@@ -45,7 +45,8 @@ in
       vim-airline
       vim-airline-themes
       vim-fugitive
-      vim-go
+      # TODO: this package is broken - fix.
+      #vim-go
       vim-hcl
       vim-nix
       vim-tmux

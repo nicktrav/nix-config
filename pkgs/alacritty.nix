@@ -2,30 +2,33 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      shell = {
+        program = "/usr/local/bin/bash";
+      };
       colors = {
         primary = {
           foreground = "0xb0bec5";
           background = "0x1b1b1b";
         };
         normal = {
-          black   = "0x313129";
-          red     = "0x974040";
-          green   = "0x7cbf68";
-          yellow  = "0xdd6060";
-          blue    = "0xff7272";
+          black = "0x313129";
+          red = "0x974040";
+          green = "0x7cbf68";
+          yellow = "0xdd6060";
+          blue = "0xff7272";
           magenta = "0xe7a6a6";
-          cyan    = "0xc79898";
-          white   = "0xf7f7f7";
+          cyan = "0xc79898";
+          white = "0xf7f7f7";
         };
         bright = {
-          black   = "0x708284";
-          red     = "0x974040";
-          green   = "0x7cbf68";
-          yellow  = "0xdd6060";
-          blue    = "0xff7272";
+          black = "0x708284";
+          red = "0x974040";
+          green = "0x7cbf68";
+          yellow = "0xdd6060";
+          blue = "0xff7272";
           magenta = "0xe7a6a6";
-          cyan    = "0xc79898";
-          white   = "0xf7f7f7";
+          cyan = "0xc79898";
+          white = "0xf7f7f7";
         };
       };
       font = {
@@ -33,7 +36,7 @@
         normal = {
           family = "Inconsolata-dz for Powerline";
         };
-        size = 6.0;
+        size = 12.0;
       };
       live_config_reload = true;
       window = {

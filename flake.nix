@@ -10,9 +10,13 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware }:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, darwin }:
     let
       mkmachine = import ./lib/mkmachine.nix;
     in
@@ -29,6 +33,13 @@
           system = "x86_64-linux";
           user = "nickt";
         };
+      };
+      darwinConfigurations."mbp" = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          home-manager.darwinModules.home-manager
+          ./machines/mbp.nix
+        ];
       };
     };
 }
