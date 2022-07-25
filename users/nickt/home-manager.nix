@@ -1,21 +1,14 @@
-{ pkgs, config, ... }:
+{ pkgs, pkconfig, ... }:
 
 let
+  nixgl = import <nixgl> { };
 
-  # Pull in the lastet from the main branch, in case we need a version of
-  # something more "bleeding edge".
-  nixpkgsRev_latest = "00021b8642c065a4da8a8d947211b431e1b52e8d";
-  nixpkgs_latest = builtins.fetchTarball {
-    url = "github.com/NixOS/nixpkgs/archive/${nixpkgsRev_latest}.tar.gz";
+  nixpkgs-latest = pkgs.fetchgit {
+    url = https://github.com/NixOS/nixpkgs;
+    rev = "33eaead204bfefea8eee256af6a678adc0906568"; # release-22.05
+    sha256 = "sha256-1HW3OPl9NHCbsTQEoSdTvM4YZTmTu9aAc51dBIMOkzk=";
   };
-  pkgs-unstable = import nixpkgs_latest { };
-
-  nixglRev = "c4aa5aa15af5d75e2f614a70063a2d341e8e3461";
-  nixgl = import
-    (builtins.fetchTarball {
-      url = "github.com/guibou/nixGL/archive/${nixglRev}.tar.gz";
-    })
-    { };
+  pkgs-unstable = import nixpkgs-latest { };
 
 in
 {
@@ -31,7 +24,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -64,18 +57,22 @@ in
   home.packages = (with pkgs; [
     bat
     binutils
+    ccache
     certigo
+    colordiff
     curl
     delve
     dig
     file
     firefox
-    gcc
+    #gcc
     gnome3.gnome-tweaks
     gnumake
+    google-cloud-sdk
     inconsolata
     jq
     lsof
+    #nixgl.auto.nixGLDefault
     nixgl.nixGLIntel
     nix-prefetch-git
     nix-index
@@ -85,9 +82,12 @@ in
     #openssh
     patchelf
     powerline-fonts
+    pprof
+    python2
     nix-index
     nodejs
     nodePackages.bash-language-server
+    nodePackages.node-gyp
     openjdk
     #opensc
     #openssh
@@ -109,13 +109,14 @@ in
     usbutils
     whois
     xclip
+    yarn
     yubico-piv-tool
     yubikey-manager
     yubioath-desktop
   ]) ++ (with pkgs-unstable; [
     _1password
     _1password-gui
-    go
+    go_1_18
     go-tools
     golint
     google-chrome
