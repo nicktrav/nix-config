@@ -75,3 +75,6 @@ if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
 fi
 
 unset command_not_found_handle
+
+# Add Go binaries to path.
+export PATH="$PATH:$GOBIN"
