@@ -15,7 +15,7 @@
       pkgName = "google-chrome-${pkgSuffix}";
       chromeSrc =
         let
-          sha256 = "sha256-1rsTqtfAorAmuLNtLop0+b9m/mRhDOEvu9I7QyVpnac=";
+          sha256 = "sha256-3DKTmm7MQu63CaLDm4XA0FCnmxPD/8gKXEJbz8BhcpA=";
         in
         super.fetchurl {
           urls = map (repo: "${repo}/${pkgName}/${pkgName}_${version}-1_amd64.deb") [
