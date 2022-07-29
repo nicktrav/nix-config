@@ -10,12 +10,12 @@
     '';
   };
 
+  users.users.nickt.home = "/Users/nickt";
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
     users.nickt = import ../users/nickt/home-manager-mbp.nix;
   };
-
 
   # Fonts.
 
