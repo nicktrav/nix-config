@@ -38,7 +38,6 @@
     curl
     dig
     file
-    firefox
     gnome3.gnome-tweaks
     gnumake
     go-tools
@@ -52,15 +51,13 @@
     nix-prefetch-git
     nix-index
     nodejs
+    nodePackages.bash-language-server
+    nodePackages.node-gyp
     openjdk
     patchelf
     powerline-fonts
     pprof
     python2
-    nix-index
-    nodejs
-    nodePackages.bash-language-server
-    nodePackages.node-gyp
     openjdk
     patchelf
     powerline-fonts
@@ -68,8 +65,6 @@
     powerline-fonts
     ripgrep
     rnix-lsp
-    rust-analyzer
-    rustup
     rsync
     shellcheck
     ssh-agents
