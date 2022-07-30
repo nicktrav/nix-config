@@ -1,4 +1,4 @@
-{ lib, pkgs, nixos-hardware, ... }:
+{ nixpkgs, nixos-hardware, ... }:
 
 {
   imports = [
@@ -29,7 +29,7 @@
     device = "/dev/disk/by-label/swap";
   }];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = nixpkgs.lib.mkDefault "powersave";
 
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;

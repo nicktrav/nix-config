@@ -1,54 +1,44 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./../../pkgs/alacritty.nix
     ./../../pkgs/bash
-    ./../../pkgs/dict.nix
     ./../../pkgs/direnv.nix
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
     ./../../pkgs/go
-    ./../../pkgs/gpg
     ./../../pkgs/htop.nix
-    ./../../pkgs/i3
-    ./../../pkgs/jetbrains
     ./../../pkgs/opensc
     ./../../pkgs/rust
     ./../../pkgs/tmux
     ./../../pkgs/vim
-    ./../../pkgs/x
-    ./wallpaper.nix
+    ./../../pkgs/yubikey
   ];
 
-  xdg.enable = true;
+  # Let home-manager install and manage itself.
+  programs.home-manager.enable = true;
 
   home.packages = (with pkgs; [
-    _1password
-    _1password-gui
-    binutils
     certigo
+    colordiff
     curl
     dig
     file
-    google-chrome
+    gnutar
     jq
-    libstdcxx5
     lsof
+    nix-index
     nix-prefetch-git
-    nodejs
-    pinentry
+    patch
     ripgrep
-    rsync
     shellcheck
     ssh-agents
     tree
     unzip
-    usbutils
+    watch
+    wget
+    which
     whois
-    xclip
-    yubico-piv-tool
-    yubikey-manager
-    yubioath-desktop
   ]);
 }

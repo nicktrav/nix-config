@@ -11,10 +11,18 @@
   };
 
   users.users.nickt.home = "/Users/nickt";
+
+  # Home manager.
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.nickt = import ../users/nickt/home-manager-mbp.nix;
+    users.nickt = { ... }: {
+      home.stateVersion = "22.05";
+      imports = [
+        ../users/nickt/mbp.nix
+      ];
+    };
   };
 
   # Fonts.

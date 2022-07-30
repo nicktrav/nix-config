@@ -60,6 +60,9 @@ in
   };
 
   home.packages = with pkgs; [
+    nodejs
+    nodePackages.bash-language-server
+    nodePackages.node-gyp
     rnix-lsp
     tree-sitter
   ];

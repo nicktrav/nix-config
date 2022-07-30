@@ -9,6 +9,8 @@
   };
   home.packages = with pkgs; [
     delve
+    go-tools
+    golint
     gopls
   ];
 }
