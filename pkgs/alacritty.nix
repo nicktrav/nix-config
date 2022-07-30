@@ -1,9 +1,9 @@
-{ ... }: {
+{ pkgs, lib, ... }: {
   programs.alacritty = {
     enable = true;
     settings = {
-      shell = {
-        program = "bash";
+      shell = lib.mkIf pkgs.stdenv.isDarwin {
+        program = "/usr/local/bin/bash";
       };
       colors = {
         primary = {

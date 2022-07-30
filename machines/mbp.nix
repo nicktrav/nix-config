@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.nix-daemon.enable = true;
@@ -25,8 +25,19 @@
     };
   };
 
-  # Fonts.
+  system.activationScripts.applications.text = pkgs.lib.mkForce (
+    ''
+      echo "setting up ~/Applications..." >&2
+      rm -rf ~/Applications/Nix\ Apps
+      mkdir -p ~/Applications/Nix\ Apps
+      _apps=/nix/var/nix/profiles/per-user/nickt/home-manager/home-path/Applications/*;
+      for app in $_apps; do
+        cp -fHRL "$app" ~/Applications/Nix\ Apps/
+      done
+    ''
+  );
 
+  # Fonts.
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
@@ -34,6 +45,7 @@
       powerline-fonts
     ];
   };
+
 
   # System packages.
 
