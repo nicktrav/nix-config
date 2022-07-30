@@ -1,4 +1,4 @@
-{ nixgl-pkgs, ... }:
+{ nixgl-pkgs, pkgs, ... }:
 
 {
   imports = [
@@ -6,6 +6,13 @@
     ./../../pkgs/jetbrains
     ./../../pkgs/x
   ];
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   xdg.enable = true;
   xdg.mime.enable = true;

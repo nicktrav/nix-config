@@ -52,26 +52,36 @@
         };
       };
 
-      homeConfigurations = {
-        xps = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          username = "nickt";
-          homeDirectory = "/home/nickt";
-          stateVersion = "22.05";
-          # Pass through nixgl overlayed onto the pkgs.
-          # See: https://github.com/guibou/nixGL#use-an-overlay
-          extraSpecialArgs =
-            let
-              nixgl-pkgs = import nixpkgs {
-                system = "x86_64-linux";
-                overlays = [ nixgl.overlay ];
+      homeConfigurations =
+        let
+          # The following is a hack to work around the following issue:
+          # https://github.com/nix-community/home-manager/issues/2942
+          pkgs-unfree = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfreePredicate = (pkg: true);
+          };
+        in
+        {
+          xps = home-manager.lib.homeManagerConfiguration {
+            pkgs = pkgs-unfree;
+            system = "x86_64-linux";
+            username = "nickt";
+            homeDirectory = "/home/nickt";
+            stateVersion = "22.05";
+            # Pass through nixgl overlayed onto the pkgs.
+            # See: https://github.com/guibou/nixGL#use-an-overlay
+            extraSpecialArgs =
+              let
+                nixgl-pkgs = import nixpkgs {
+                  system = "x86_64-linux";
+                  overlays = [ nixgl.overlay ];
+                };
+              in
+              {
+                inherit nixgl-pkgs;
               };
-            in
-            {
-              inherit nixgl-pkgs;
-            };
-          configuration = import ./users/nickt/xps.nix;
+            configuration = import ./users/nickt/xps.nix;
+          };
         };
-      };
     };
 }
