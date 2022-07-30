@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       shell = {
-        program = "/usr/local/bin/bash";
+        program = "bash";
       };
       colors = {
         primary = {
