@@ -45,8 +45,7 @@ in
       vim-airline
       vim-airline-themes
       vim-fugitive
-      # TODO: this package is broken - fix.
-      #vim-go
+      vim-go
       vim-hcl
       vim-nix
       vim-tmux
@@ -60,6 +59,7 @@ in
   };
 
   home.packages = with pkgs; [
+    bat
     nodejs
     nodePackages.bash-language-server
     nodePackages.node-gyp

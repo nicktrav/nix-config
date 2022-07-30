@@ -25,7 +25,6 @@
     kubectx
     kubectl
     libtool
-    nodejs
     openssh
     yarn
   ]);
