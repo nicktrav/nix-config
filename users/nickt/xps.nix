@@ -7,20 +7,7 @@
     ./../../pkgs/x
   ];
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  xdg.enable = true;
-  xdg.mime.enable = true;
-  targets.genericLinux.enable = true;
-
-  fonts.fontconfig.enable = true;
-
-  home.packages = (with nixgl-pkgs; [
+  home.packages = (with pkgs; [
     _1password
     _1password-gui
     bat
@@ -32,7 +19,6 @@
     google-chrome
     google-cloud-sdk
     inconsolata
-    nixgl.nixGLIntel
     openjdk
     patchelf
     powerline-fonts
@@ -44,7 +30,7 @@
     xclip
     yarn
     yubioath-desktop
+  ]) ++ (with nixgl-pkgs; [
+    nixgl.nixGLIntel
   ]);
-
-  news.display = "silent";
 }

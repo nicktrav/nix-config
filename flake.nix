@@ -1,10 +1,10 @@
 {
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-22.05";
+      url = "github:nixos/nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
@@ -54,33 +54,29 @@
 
       homeConfigurations =
         let
-          # The following is a hack to work around the following issue:
-          # https://github.com/nix-community/home-manager/issues/2942
-          pkgs-unfree = import nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfreePredicate = (pkg: true);
-          };
+          system = "x86_64-linux";
+
         in
         {
           xps = home-manager.lib.homeManagerConfiguration {
-            pkgs = pkgs-unfree;
-            system = "x86_64-linux";
-            username = "nickt";
-            homeDirectory = "/home/nickt";
-            stateVersion = "22.05";
+            pkgs = import nixpkgs {
+              inherit system;
+            };
+            modules = [
+              ./machines/xps.nix
+            ];
             # Pass through nixgl overlayed onto the pkgs.
             # See: https://github.com/guibou/nixGL#use-an-overlay
             extraSpecialArgs =
               let
                 nixgl-pkgs = import nixpkgs {
-                  system = "x86_64-linux";
+                  inherit system;
                   overlays = [ nixgl.overlay ];
                 };
               in
               {
                 inherit nixgl-pkgs;
               };
-            configuration = import ./users/nickt/xps.nix;
           };
         };
     };
