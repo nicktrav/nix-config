@@ -17,15 +17,12 @@ in
 {
   imports = [
     ./shared.nix
-
-    # TOOD: Ideally this would be imported via home-manager, but I can't work
-    # out how to get that working.
-    ../overlays/jetbrains.nix
   ];
 
   # Overlays.
   nixpkgs.overlays = [
     (import ../overlays/chrome.nix)
+    ../overlays/jetbrains.nix
   ];
 
   # Use a more recent Linux kernel.

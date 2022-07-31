@@ -1,6 +1,9 @@
-{ config, ... }: {
-  nixpkgs.config.jetbrains.vmopts = ''
-    -Xms8g
-    -Xmx8g
-  '';
-}
+(self: super: {
+  jetbrains =
+    super.jetbrains.overrideAttrs (oldAttrs: rec {
+      vmopts = ''
+        -Xms8g
+        -Xmx8g
+      '';
+    });
+})
