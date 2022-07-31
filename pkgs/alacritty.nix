@@ -5,6 +5,12 @@
       shell = lib.mkIf pkgs.stdenv.isDarwin {
         program = "/usr/local/bin/bash";
       };
+      # On the XPS, the DPI scaling makes fonts larger than they should be.
+      # Correct for this by disabling scaling. See the following issue for more
+      # context: https://github.com/alacritty/alacritty/issues/1501
+      env = lib.mkIf (!pkgs.stdenv.isDarwin) {
+        WINIT_X11_SCALE_FACTOR = "1.0";
+      };
       colors = {
         primary = {
           foreground = "0xb0bec5";
