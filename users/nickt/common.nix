@@ -8,6 +8,7 @@
     ./../../pkgs/fzf.nix
     ./../../pkgs/git
     ./../../pkgs/go
+    ./../../pkgs/gpg
     ./../../pkgs/htop.nix
     ./../../pkgs/opensc
     ./../../pkgs/rust

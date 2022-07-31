@@ -9,7 +9,7 @@
     };
   };
 
-  services.gpg-agent = {
+  services.gpg-agent = lib.mkIf (pkgs.stdenv.isLinux) {
     enable = true;
     pinentryFlavor = "curses";
   };

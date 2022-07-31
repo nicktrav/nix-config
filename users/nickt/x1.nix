@@ -4,7 +4,6 @@
   imports = [
     ./common.nix
     ./../../pkgs/dict.nix
-    ./../../pkgs/gpg
     ./../../pkgs/i3
     ./../../pkgs/jetbrains
     ./../../pkgs/x
