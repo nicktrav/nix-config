@@ -10,6 +10,11 @@
   # See https://github.com/nix-community/home-manager/issues/2942.
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
+  # Overlays.
+  nixpkgs.overlays = [
+    (import ../overlays/chrome.nix)
+  ];
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
