@@ -222,7 +222,7 @@ local on_attach = function(client, bufnr)
     },
   })
 end
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -250,6 +250,7 @@ vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handle
 local treesitter = require'nvim-treesitter.configs'
 local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
 vim.fn.mkdir(parser_install_dir, "p")
+vim.opt.runtimepath:append(parser_install_dir)
 treesitter.setup {
   parser_install_dir = parser_install_dir,
   ensure_installed = {
