@@ -3,7 +3,7 @@
 (self: super: {
   google-chrome =
     let
-      version = "107.0.5304.87";
+      version = "108.0.5359.71";
       channel = "stable";
 
     in
@@ -15,7 +15,7 @@
       pkgName = "google-chrome-${pkgSuffix}";
       chromeSrc =
         let
-          sha256 = "sha256-QisbBzLtD2nUY4hY1V+Dxlw7h3c7HwMxML262XXERpk=";
+          sha256 = "sha256-wuxJKE9qUoi2htyVDRszQriIGj5kDbDtW14NLefNJyQ=";
         in
         super.fetchurl {
           urls = map (repo: "${repo}/${pkgName}/${pkgName}_${version}-1_amd64.deb") [
