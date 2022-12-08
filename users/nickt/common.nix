@@ -26,6 +26,7 @@
     curl
     dig
     file
+    gawk
     gnutar
     jq
     lsof
