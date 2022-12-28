@@ -28,7 +28,6 @@
     usbutils
     xclip
     yarn
-    yubioath-desktop
   ]) ++ (with nixgl-pkgs; [
     nixgl.nixGLIntel
   ]);

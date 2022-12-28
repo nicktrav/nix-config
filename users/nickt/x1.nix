@@ -22,6 +22,5 @@
     rsync
     usbutils
     xclip
-    yubioath-desktop
   ]);
 }
