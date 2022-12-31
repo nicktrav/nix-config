@@ -29,7 +29,7 @@ in
   ];
 
   # Use a more recent Linux kernel.
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_19;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
 
   # Enable host-specific interfaces.
   networking.interfaces.enp0s31f6.useDHCP = true;
