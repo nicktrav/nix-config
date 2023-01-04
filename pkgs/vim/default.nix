@@ -41,6 +41,7 @@ in
       popfix
       rust-vim
       syntastic
+      telescope-fzf-native-nvim
       telescope-nvim
       vim-airline
       vim-airline-themes
