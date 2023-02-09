@@ -11,6 +11,10 @@
   nixpkgs.overlays = [
     (import ../overlays/chrome.nix)
   ];
+  # TODO(nickt): Figure out why this is needed.
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
 
   nix = {
     package = pkgs.nixFlakes;
