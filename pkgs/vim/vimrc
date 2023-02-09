@@ -248,19 +248,7 @@ vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handle
 -- read-only. Remove this workaround once the following is fixed upstream:
 -- https://github.com/NixOS/nixpkgs/issues/189838
 local treesitter = require'nvim-treesitter.configs'
-local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
-vim.fn.mkdir(parser_install_dir, "p")
-vim.opt.runtimepath:append(parser_install_dir)
 treesitter.setup {
-  parser_install_dir = parser_install_dir,
-  ensure_installed = {
-    "bash",
-    "go",
-    "json",
-    "rust",
-    "toml",
-    "yaml",
-  },
   highlight = {
     enable = true,
     disabled = {},

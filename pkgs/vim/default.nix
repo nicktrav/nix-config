@@ -36,7 +36,14 @@ in
       nvim-cmp
       nvim-lspconfig
       nvim-lsputils
-      nvim-treesitter
+      (nvim-treesitter.withPlugins (p: [
+        p.bash
+        p.go
+        p.json
+        p.rust
+        p.toml
+        p.yaml
+      ]))
       plenary-nvim
       popfix
       rust-vim
