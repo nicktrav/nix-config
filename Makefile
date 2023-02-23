@@ -1,6 +1,6 @@
-NIXADDR ?= unknown
+NIXADDR ?= 192.168.1.219
 NIXPORT ?= 22
-NIXUSER ?= nickt
+NIXUSER ?= nixos
 
 NIXBLOCKDEVICE ?= sda
 

@@ -27,6 +27,7 @@
     dig
     file
     gawk
+    gnumake
     gnutar
     jq
     lsof

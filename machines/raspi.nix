@@ -21,20 +21,11 @@ in
 
   # Overlays.
   nixpkgs.overlays = [
-    (import ../overlays/chrome.nix)
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use a more recent Linux kernel.
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
-
   # Enable host-specific interfaces.
-  networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.enp45s0u2.useDHCP = true;
-  networking.interfaces.wlp0s20f3.useDHCP = true;
+  networking.interfaces.eth0.useDHCP = true;
+  networking.interfaces.wlan0.useDHCP = true;
 
   # Allow user logins after basic system initialization. This avoids having to
   # wait for all network interfaces to obtain a DHCP lease before a user can
@@ -49,24 +40,18 @@ in
   networking.firewall = {
     enable = true;
     interfaces = {
-      "enp45s0u2" = {
+      "eth0" = {
         allowedTCPPorts = [ 22 ];
       };
       "tailscale0" = {
         allowedTCPPorts = [ 22 ];
         allowedUDPPorts = [ config.services.tailscale.port ];
       };
-      "wlp0s20f3" = {
+      "wlan0" = {
         allowedTCPPorts = [ 22 ];
       };
     };
     checkReversePath = "loose";
-  };
-
-  # Remain open with the lid closed.
-  services.logind = {
-    lidSwitch = "ignore";
-    lidSwitchExternalPower = "ignore";
   };
 
   # Remap keys; increase trackpad speed.
@@ -74,16 +59,6 @@ in
     ${pkgs.xorg.xmodmap}/bin/xmodmap ${keyboardLayout}
     ${pkgs.xorg.xinput}/bin/xinput --set-prop 13 338 0.5
   '';
-
-  # Enable brightness keys.
-  programs.light.enable = true;
-  services.actkbd = {
-    enable = true;
-    bindings = [
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-    ];
-  };
 
   # Enable virtualization.
   virtualisation.libvirtd.enable = true;
@@ -103,44 +78,13 @@ in
     users.nickt = { ... }: {
       home.stateVersion = "22.05";
       imports = [
-        ../users/nickt/x1.nix
+        ../users/nickt/raspi.nix
       ];
     };
   };
 
-  # Setup windowing environment.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-
-    desktopManager = {
-      xterm.enable = false;
-      wallpaper.mode = "scale";
-    };
-
-    displayManager = {
-      defaultSession = "none+i3";
-      lightdm.enable = true;
-    };
-
-    windowManager = {
-      i3.enable = true;
-    };
-  };
-
-  # Manage fonts.
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      inconsolata
-      inconsolata-nerdfont
-      nerdfonts
-      powerline-fonts
-    ];
-  };
-
   # Define your hostname.
-  networking.hostName = "nickt-xps";
+  networking.hostName = "nickt-raspi";
 
   users.users.nickt = {
     isNormalUser = true;
@@ -153,3 +97,4 @@ in
     ];
   };
 }
+

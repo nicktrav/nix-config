@@ -32,6 +32,14 @@
             ./machines/x1.nix
           ];
         };
+        raspi = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            home-manager.nixosModules.home-manager
+            (import ./hardware/raspi.nix { inherit nixpkgs nixos-hardware; })
+            ./machines/raspi.nix
+          ];
+        };
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

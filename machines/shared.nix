@@ -37,26 +37,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Setup windowing environment.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-
-    desktopManager = {
-      xterm.enable = false;
-      wallpaper.mode = "scale";
-    };
-
-    displayManager = {
-      defaultSession = "none+i3";
-      lightdm.enable = true;
-    };
-
-    windowManager = {
-      i3.enable = true;
-    };
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.mutableUsers = false;
 
