@@ -10,13 +10,6 @@
   # Allow unfree software.
   nixpkgs.config.allowUnfree = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Define your hostname.
-  networking.hostName = "nickt";
-
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 

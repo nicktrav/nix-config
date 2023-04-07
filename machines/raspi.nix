@@ -45,7 +45,10 @@ in
       };
       "tailscale0" = {
         allowedTCPPorts = [ 22 ];
-        allowedUDPPorts = [ config.services.tailscale.port ];
+        allowedUDPPorts = [ 
+          53
+          config.services.tailscale.port
+        ];
       };
       "wlan0" = {
         allowedTCPPorts = [ 22 ];

@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  programs.blocky = {
-    enable = true;
-  };
+  home.packages = with pkgs; [
+    blocky
+  ];
 }

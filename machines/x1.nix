@@ -140,7 +140,7 @@ in
   };
 
   # Define your hostname.
-  networking.hostName = "nickt-xps";
+  networking.hostName = "nickt-x1";
 
   users.users.nickt = {
     isNormalUser = true;
