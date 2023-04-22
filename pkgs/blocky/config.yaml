@@ -8,6 +8,7 @@ blocking:
   blackLists:
     ads:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+    - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
   clientGroupsBlock:
     default:
     - ads
