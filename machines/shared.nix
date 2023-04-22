@@ -10,9 +10,6 @@
   # Allow unfree software.
   nixpkgs.config.allowUnfree = true;
 
-  # We expect to run the VM on hidpi machines.
-  hardware.video.hidpi.enable = true;
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -88,9 +85,11 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    permitRootLogin = "no";
-    kbdInteractiveAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      KbdInteractiveAuthentication = false;
+    };
   };
 
   # Smartcard support.
