@@ -87,6 +87,7 @@ in
 
   # Enable virtualization.
   virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
   programs.dconf.enable = true;
 
   # System packages.

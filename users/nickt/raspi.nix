@@ -3,7 +3,6 @@
 {
   imports = [
     ./common.nix
-    ../../pkgs/blocky
   ];
 
   xdg.enable = true;

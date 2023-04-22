@@ -24,9 +24,6 @@
   # Don't require password for sudo.
   security.sudo.wheelNeedsPassword = false;
 
-  # Virtualization settings.
-  virtualisation.docker.enable = true;
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
