@@ -32,6 +32,7 @@
     lsof
     nix-index
     nix-prefetch-git
+    nix-tree
     patch
     ripgrep
     shellcheck
