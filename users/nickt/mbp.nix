@@ -26,6 +26,7 @@
     kubectl
     libtool
     openssh
+    podman
     yarn
   ]);
 }
