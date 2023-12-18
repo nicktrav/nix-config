@@ -2,7 +2,7 @@
 
 let
 
-  vim-godebug = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  vim-godebug = pkgs.vimUtils.buildVimPlugin {
     pname = "vim-godebug";
     version = "2021-11-14";
     src = pkgs.fetchFromGitHub {
