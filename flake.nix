@@ -80,6 +80,16 @@
                 inherit nixgl-pkgs;
               };
           };
+          chromebook = home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs {
+              inherit system;
+              # See https://github.com/nix-community/home-manager/issues/2942.
+              config.allowUnfree = true;
+            };
+            modules = [
+              ./machines/chromebook.nix
+            ];
+          };
         };
     };
 }
