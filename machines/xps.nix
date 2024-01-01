@@ -1,10 +1,6 @@
 { pkgs, ... }: {
   imports = [
     ../users/nickt/xps.nix
-
-    # TOOD: Ideally this would be imported via home-manager, but I can't work
-    # out how to get that working.
-    ../overlays/jetbrains.nix
   ];
 
   # Overlays.
