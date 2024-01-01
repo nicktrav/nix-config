@@ -13,7 +13,7 @@
   ];
   # TODO(nickt): Figure out why this is needed.
   nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.6"
+    "python-2.7.18.7"
   ];
 
   nix = {
@@ -27,6 +27,9 @@
   xdg.mime.enable = true;
   targets.genericLinux.enable = true;
   fonts.fontconfig.enable = true;
+
+  # Allow unfree software.
+  nixpkgs.config.allowUnfree = true;
 
   # Home manager.
   programs.home-manager.enable = true;
