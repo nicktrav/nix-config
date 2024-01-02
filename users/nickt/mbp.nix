@@ -27,6 +27,7 @@
     libtool
     openssh
     podman
+    tailscale
     yarn
   ]);
 }
