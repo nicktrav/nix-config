@@ -19,6 +19,7 @@ _:
   #"vlc"
 
   # Productivity Tools
+  "obsidian"
   #"raycast"
 
   # Browsers
