@@ -1,0 +1,404 @@
+" -----------------------------------------------------------------------------
+"   Mappings
+" -----------------------------------------------------------------------------
+
+" Turning off arrow key - beacuse that's just lazy
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Find files with fzf
+nmap <Leader>t :Files<CR>
+nmap <Leader>b :Buffers<CR>
+
+" Search contents of files with ripgrep
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+nmap <Leader>f :Find<CR>
+
+" Close a buffer by first switching to the next buffer and then closing out
+" the buffer from which we came
+nnoremap c :bp\|bd #<CR>
+nnoremap <Leader>q :bp\|bd #<CR>
+
+" Remap semicolon to colon
+nnoremap ; :
+
+" Remap the nav keys to move around splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <leader>` :exe "tabn ".g:lasttab<cr>
+
+" -----------------------------------------------------------------------------
+"   Layout
+" -----------------------------------------------------------------------------
+" Highlight current line
+set cursorline
+
+" Tab settings
+filetype plugin indent on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" Sensible splitting
+set splitbelow
+set splitright
+
+" better searching
+set incsearch
+set hlsearch
+nmap <leader>h :nohlsearch<cr>
+set ignorecase
+set smartcase
+
+" Line numbers
+set relativenumber
+set number
+
+" Toggle between relative and absolute numbering
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+set clipboard=unnamedplus
+
+" Remember cursor position between vim sessions
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+
+" Center buffer around cursor when opening files
+autocmd BufRead * normal zz
+
+" -----------------------------------------------------------------------------
+"   NERDTree
+" -----------------------------------------------------------------------------
+" Autostart NERDTree in the main window.
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+" Allow backspace in insert mode
+:set backspace=2
+
+" Show hidden files by default
+let NERDTreeShowHidden=1
+set laststatus=2
+
+" Ignore certain file types
+let NERDTreeIgnore = ['\.swp$', '\.swo$']
+
+" Navigate to open file.
+map <leader>n :NERDTreeFind<cr>
+
+" -----------------------------------------------------------------------------
+"   Fugitive
+" -----------------------------------------------------------------------------
+set statusline+=%{fugitive#statusline()}
+
+" -----------------------------------------------------------------------------
+"   Language server
+" -----------------------------------------------------------------------------
+lua << EOF
+
+-- Completions.
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+  },
+  sources = cmp.config.sources(
+    {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+    }, {
+      { name = 'buffer' },
+    }
+  ),
+  experimental = {
+    ghost_text = true,
+  },
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- LSP
+
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-p>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  -- Format on save.
+  if client.server_capabilities.document_formatting then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
+  end
+
+  -- Show function signatures.
+  require "lsp_signature".on_attach({
+    doc_lines = 0,
+    handler_opts = {
+      border = "none"
+    },
+  })
+end
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    update_in_insert = true,
+  }
+)
+
+--- lsputils
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
+--- Treesitter.
+-- TODO: The following is a workaround for an issue where treesitter requires
+-- a R/W directory for the parsers, but the directory Nix gives us is
+-- read-only. Remove this workaround once the following is fixed upstream:
+-- https://github.com/NixOS/nixpkgs/issues/189838
+local treesitter = require'nvim-treesitter.configs'
+treesitter.setup {
+  highlight = {
+    enable = true,
+    disabled = {},
+  },
+  indent = {
+    enable = false,
+    disabled = {},
+  },
+}
+
+--- Bash.
+nvim_lsp.bashls.setup {
+  on_attach = on_attach,
+  cmd = {"bash-language-server", "start"},
+  capabilities = capabilities,
+}
+
+--- Go.
+nvim_lsp.gopls.setup {
+  on_attach = on_attach,
+  cmd = {"gopls", "serve"},
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+    },
+  },
+  capabilities = capabilities,
+}
+
+--- Nix.
+nvim_lsp.rnix.setup {
+  on_attach = on_attach,
+}
+
+--- Rust.
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
+      },
+    },
+  },
+  capabilities = capabilities,
+}
+EOF
+
+" Better completion
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" -----------------------------------------------------------------------------
+"   Go
+" -----------------------------------------------------------------------------
+"
+let g:go_def_mapping_enabled = 0
+autocmd FileType go nmap <Space>tt <Plug>(go-test)
+autocmd FileType go nmap <Space>tf :GoTestFunc<CR>
+
+let g:vimspector_install_gadgets = [ 'vscode-go', 'CodeLLDB' ]
+
+let g:vimspector_base_dir=expand( '$HOME/.config/vim/vimspector' )
+nmap <Space>dc <Plug>VimspectorContinue
+nmap <Space>dr <Plug>VimspectorRestart
+nmap <Space>dq :VimspectorReset<CR>
+nmap <Space>dp <Plug>VimspectorPause
+nmap <Space>ds <Plug>VimspectorStop
+nmap <Space>dd <Plug>VimspectorToggleBreakpoint
+nmap <Space>di <Plug>VimspectorStepInto
+nmap <Space>dI <Plug>VimspectorStepOut
+nmap <Space>do <Plug>VimspectorStepOver
+nmap <Space>dk <Plug>VimspectorRunToCursor
+
+" -----------------------------------------------------------------------------
+"   Themes and colors
+" -----------------------------------------------------------------------------
+syntax enable
+set termguicolors
+colorscheme base16-tomorrow-night
+set t_ut= " without this line, weird things happen when using tmux
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+set hidden
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='minimalist'
+
+" Colouring for greater than 80 chars
+highlight ColorColumn ctermbg=Red
+call matchadd('ColorColumn', '\%81v', 100)
+
+" Highlight whitespace and tabs
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+
+" Disable tmuxline
+"let g:airline#extensions#tmuxline#enabled = 0
+
+" -----------------------------------------------------------------------------
+"   Spelling
+" -----------------------------------------------------------------------------
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=white ctermbg=red
+hi SpellBad cterm=underline guifg=white guibg=red
+
+" -----------------------------------------------------------------------------
+"   Search
+" -----------------------------------------------------------------------------
+
+nnoremap <Leader>t <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <Leader>T <cmd>lua require('telescope.builtin').file_browser()<cr>
+nnoremap <Leader>f <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <Leader>b <cmd>Telescope buffers<cr>
+nnoremap <Leader>H <cmd>Telescope help_tags<cr>
+nnoremap <Leader>D <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-i>"] = actions.move_selection_previous,
+        ["<C-k>"] = actions.move_selection_next,
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    },
+  },
+}
+require('telescope').load_extension('fzf')
+EOF
