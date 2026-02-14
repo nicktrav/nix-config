@@ -93,7 +93,6 @@ in {
       vim-tmux
       vim-tmux-focus-events
       vim-tmux-navigator
-      vimspector
     ]);
     extraConfig = builtins.readFile ./vim/vimrc;
   };

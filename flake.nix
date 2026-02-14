@@ -2,10 +2,10 @@
   description = "Starter Configuration for MacOS and NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
@@ -83,11 +83,9 @@
           specialArgs = inputs;
           modules = [
             {
-              #nix.settings.ssl-cert-file = /Users/nickt/.nix-certs/netskope.crt;
-              #nix.settings.ssl-cert-file = "/etc/ssl/certs/combined-nix-ca.pem";
-              # TEMPORARY: force no downloads during this flip
-              #nix.settings.substitute = false;
-              #nix.settings.substituters = [ ];
+              # Combined system CAs + Netskope proxy cert so Nix can fetch
+              # through the corporate proxy without SSL errors.
+              nix.settings.ssl-cert-file = "/Users/nickt/.nix-certs/netskope-system-combined.crt";
             }
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew

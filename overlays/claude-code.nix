@@ -1,15 +1,46 @@
-# Override nixpkgs' claude-code to a newer npm version.
-final: prev:
-let
-  newVersion = "2.1.32";
-  newSrc = prev.fetchurl {
-    url  = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${newVersion}.tgz";
-    hash = "sha256-qMCPsYVxWnn46Hah9Qd+rSN6eOQ/8Qafd35IfHkLAe0=";
-  };
-in {
-  claude-code = prev.claude-code.overrideAttrs (old: {
-    version = newVersion;
-    src = newSrc;
-    npmDepsHash = prev.lib.fakeHash;
+# Override nixpkgs' claude-code with a newer version.
+#
+# We rebuild the package from scratch rather than using overrideAttrs because
+# buildNpmPackage doesn't propagate npmDepsHash changes through overrideAttrs.
+# The package-lock.json lives at overlays/pkgs/claude-code/package-lock.json
+# and must be updated whenever the version is bumped.
+final: prev: {
+  claude-code = prev.buildNpmPackage (finalAttrs: {
+    pname = "claude-code";
+    version = "2.1.39";
+
+    src = prev.fetchzip {
+      url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
+      hash = "sha256-NLLiaJkU91ZnEcQUWIAX9oUTt+C5fnWXFFPelTtWmdo=";
+    };
+
+    npmDepsHash = "sha256-VWw1bYkFch95JDlOwKoTAQYOr8R80ICJ8QUI4E64W7o=";
+
+    strictDeps = true;
+
+    postPatch = ''
+      cp ${../overlays/pkgs/claude-code/package-lock.json} package-lock.json
+      substituteInPlace cli.js \
+        --replace-fail '#!/bin/sh' '#!/usr/bin/env sh'
+    '';
+
+    dontNpmBuild = true;
+
+    env.AUTHORIZED = "1";
+
+    postInstall = ''
+      wrapProgram $out/bin/claude \
+        --set DISABLE_AUTOUPDATER 1 \
+        --set DISABLE_INSTALLATION_CHECKS 1 \
+        --unset DEV \
+        --prefix PATH : ${prev.lib.makeBinPath [ prev.procps ]}
+    '';
+
+    meta = {
+      description = "Agentic coding tool";
+      homepage = "https://github.com/anthropics/claude-code";
+      license = prev.lib.licenses.unfree;
+      mainProgram = "claude";
+    };
   });
 }

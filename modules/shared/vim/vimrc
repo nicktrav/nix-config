@@ -323,20 +323,6 @@ let g:go_def_mapping_enabled = 0
 autocmd FileType go nmap <Space>tt <Plug>(go-test)
 autocmd FileType go nmap <Space>tf :GoTestFunc<CR>
 
-let g:vimspector_install_gadgets = [ 'vscode-go', 'CodeLLDB' ]
-
-let g:vimspector_base_dir=expand( '$HOME/.config/vim/vimspector' )
-nmap <Space>dc <Plug>VimspectorContinue
-nmap <Space>dr <Plug>VimspectorRestart
-nmap <Space>dq :VimspectorReset<CR>
-nmap <Space>dp <Plug>VimspectorPause
-nmap <Space>ds <Plug>VimspectorStop
-nmap <Space>dd <Plug>VimspectorToggleBreakpoint
-nmap <Space>di <Plug>VimspectorStepInto
-nmap <Space>dI <Plug>VimspectorStepOut
-nmap <Space>do <Plug>VimspectorStepOver
-nmap <Space>dk <Plug>VimspectorRunToCursor
-
 " -----------------------------------------------------------------------------
 "   Themes and colors
 " -----------------------------------------------------------------------------

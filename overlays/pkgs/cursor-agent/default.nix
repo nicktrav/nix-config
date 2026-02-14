@@ -29,15 +29,9 @@ stdenvNoCC.mkDerivation rec {
     # Ensure executables are marked executable.
     chmod +x $out/bin/cursor-agent || true
 
-    # If the tarball ships a Node binary, install it; otherwise, symlink
-    # nixpkgs' Node.
-    if [ -f dist-package/node ]; then
-      install -Dm755 dist-package/node $out/bin/node
-    else
-      ln -s ${nodejs}/bin/node $out/bin/node
-    fi
-
-    # PATH wrapper (doesn't interfere with $basedir/node usage).
+    # Don't install the bundled node binary — it conflicts with nixpkgs'
+    # nodejs in the home-manager environment. cursor-agent gets node via
+    # the PATH wrapper below instead.
     wrapProgram $out/bin/cursor-agent \
       --prefix PATH : ${lib.makeBinPath [ nodejs ripgrep ]}
     runHook postInstall

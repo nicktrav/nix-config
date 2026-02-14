@@ -11,10 +11,6 @@ in {
     text = builtins.readFile ./vim/Tomorrow-Night.vim;
   };
 
-  "${xdg_configHome}/nvim/vimspector/configurations/linux/go/config.json" = {
-    text = builtins.readFile ./vim/vimspector-go.json;
-  };
-
   # Tmux.
   "${xdg_configHome}/tmux/tmux-vim-select-pane".source = ./tmux/tmux-vim-select-pane;
 
