@@ -273,7 +273,7 @@ in {
       set -g status-left-style "none"
       set -g message-command-style "fg=#E4E4E4,bg=#4E4E4E"
       set -g status-right-style "none"
-      set -g pane-active-border-style "fg=#3A3A3A"
+      set -g pane-active-border-style "fg=#5FFF87"
       set -g status-style "none,bg=#262626"
       set -g message-style "fg=#E4E4E4,bg=#4E4E4E"
       set -g pane-border-style "fg=#4E4E4E"
