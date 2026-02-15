@@ -1,11 +1,17 @@
 { user, pkgs, config, ... }:
 
 let
-  xdg_configHome = "${config.users.users.${user}.home}/.config";
-  xdg_dataHome   = "${config.users.users.${user}.home}/.local/share";
-  xdg_stateHome  = "${config.users.users.${user}.home}/.local/state";
+  homeDir        = config.users.users.${user}.home;
+  xdg_configHome = "${homeDir}/.config";
+  xdg_dataHome   = "${homeDir}/.local/share";
+  xdg_stateHome  = "${homeDir}/.local/state";
 
 in {
+  # Claude Code.
+  "${homeDir}/.claude/CLAUDE.md" = {
+    text = builtins.readFile ./claude/CLAUDE.md;
+  };
+
   # Vim.
   "${xdg_configHome}/nvim/Tomorrow-Night.vim" = {
     text = builtins.readFile ./vim/Tomorrow-Night.vim;
