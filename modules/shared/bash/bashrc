@@ -18,6 +18,17 @@ for file in ~/.{bash_prompt,aliases,functions,docker_functions,paths}; do
 done
 unset file
 
+# Source secret environment variables from ~/.config/secrets/*.env.
+# These files are not managed by Nix and should be created manually with
+# mode 600 (the directory should be mode 700).
+for file in ~/.config/secrets/*.env; do
+  if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+    # shellcheck source=/dev/null
+    source "$file"
+  fi
+done
+unset file
+
 # Case-insensitive globbing
 shopt -s nocaseglob
 
