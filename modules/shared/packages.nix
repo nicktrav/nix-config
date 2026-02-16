@@ -11,8 +11,8 @@ in [
   bat
   nodejs
   nodePackages.bash-language-server
+  nil
   nodePackages.node-gyp
-  #rnix-lsp
   tree-sitter
 
   # Git

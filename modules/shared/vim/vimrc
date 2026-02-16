@@ -284,7 +284,7 @@ nvim_lsp.gopls.setup {
 }
 
 --- Nix.
-nvim_lsp.rnix.setup {
+nvim_lsp.nil_ls.setup {
   on_attach = on_attach,
 }
 
