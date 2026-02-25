@@ -11,6 +11,7 @@ in {
   "${homeDir}/.claude/CLAUDE.md" = {
     text = builtins.readFile ./claude/CLAUDE.md;
   };
+  "${homeDir}/.claude/statusline.sh".source = ./claude/statusline.sh;
 
   # Vim.
   "${xdg_configHome}/nvim/Tomorrow-Night.vim" = {
