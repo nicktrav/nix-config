@@ -50,9 +50,15 @@ Upgrade the claude-code package in `overlays/claude-code.nix` to a new version.
 
    Put the resulting hash in `npmDepsHash`.
 
-6. **Build:** `nix run .#build`
+6. **Show the changelog** between the old and new versions:
 
-7. **Switch:** `nix run .#build-switch`
+   Fetch `https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+   and extract the entries between the old and new version numbers. Present a
+   summary to the user.
+
+7. **Build:** `nix run .#build`
+
+8. **Switch:** `nix run .#build-switch`
 
 ## SSL troubleshooting
 
