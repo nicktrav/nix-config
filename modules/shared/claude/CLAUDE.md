@@ -1,3 +1,7 @@
+# Writing Style
+
+- Never use em-dashes. A single hyphen (-) is fine. Otherwise, use commas, parentheses, or separate sentences.
+
 # Commit Messages
 
 ## Subject Line
