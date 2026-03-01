@@ -39,6 +39,7 @@ alias gpom='git pull origin master'
 alias gs='git status'
 alias gd='git diff'
 alias gcm='git checkout master'
+alias docker='podman'
 
 # lr:  Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
