@@ -13,6 +13,7 @@ _:
   #"zoom"
 
   # Utility Tools
+  "yubico-authenticator"
   #"syncthing"
 
   # Entertainment Tools

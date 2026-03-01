@@ -26,4 +26,5 @@ in
     podman
     tailscale
     yarn
+    yubikey-manager
 ]
