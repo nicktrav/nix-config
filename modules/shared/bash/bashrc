@@ -98,6 +98,7 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:/opt/homebrew/bin"
 
 # Work related things for Claude
-export CLAUDE_CODE_USE_VERTEX=1
-export ANTHROPIC_VERTEX_PROJECT_ID=vertex-model-runners
-export CLOUD_ML_REGION=global
+# TODO(nickt): Move these to move to ~/.config/env
+#export CLAUDE_CODE_USE_VERTEX=1
+#export ANTHROPIC_VERTEX_PROJECT_ID=vertex-model-runners
+#export CLOUD_ML_REGION=global
