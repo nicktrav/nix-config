@@ -71,7 +71,7 @@ function restart-ssh-agent() {
   pkill ssh-agent
   eval "ssh-agent -a $SSH_AUTH_SOCK" > /dev/null
 
-  echo "Loading SSH keys from Yubikey."
+  echo "Loading SSH keys from Yubikey. Touch the key when it blinks."
   ssh-add -K
 }
 
