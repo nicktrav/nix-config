@@ -156,6 +156,18 @@ in
         launchanim = true;
         orientation = "right";
         tilesize = 40;
+
+        # Hot corners
+        wvous-tl-corner = 3;   # Application Windows
+        wvous-br-corner = 13;  # Lock Screen
+      };
+
+      # The modifier options aren't exposed as typed nix-darwin settings,
+      # so we set them directly via CustomUserPreferences.
+      CustomUserPreferences = {
+        "com.apple.dock" = {
+          wvous-br-modifier = 1048576; # Cmd
+        };
       };
 
       finder = {
@@ -170,7 +182,7 @@ in
 
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToControl = true;
+      remapCapsLockToEscape = true;
     };
   };
 }
