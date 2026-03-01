@@ -15,8 +15,12 @@ in {
     name = "${user}";
     home = "/Users/${user}";
     isHidden = false;
-    shell = pkgs.bash;
+    shell = pkgs.bashInteractive;
   };
+
+  # Register the Nix-provided bash as a valid login shell so macOS
+  # accepts it (it must appear in /etc/shells for chsh/dscl to work).
+  environment.shells = [ pkgs.bashInteractive ];
 
   homebrew = {
     enable = true;

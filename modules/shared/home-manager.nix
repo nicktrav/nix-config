@@ -101,7 +101,7 @@ in {
     enable = true;
     settings = {
       terminal.shell = lib.mkIf pkgs.stdenv.isDarwin {
-        program = "/usr/local/bin/bash";
+        program = "${pkgs.bashInteractive}/bin/bash";
       };
       # On the XPS, the DPI scaling makes fonts larger than they should be.
       # Correct for this by disabling scaling. See the following issue for more
@@ -174,6 +174,8 @@ in {
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
     ];
+    # Use the Nix-provided bash instead of macOS's ancient /bin/bash.
+    shell = "${pkgs.bashInteractive}/bin/bash";
     extraConfig = ''
       # Change prefix key to `
       set -g prefix C-z
