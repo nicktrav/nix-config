@@ -23,13 +23,16 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, mac-app-util, disko } @inputs:
     let
       user = "nickt";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -88,6 +91,7 @@
               nix.settings.ssl-cert-file = "/Users/nickt/.nix-certs/netskope-system-combined.crt";
             }
             home-manager.darwinModules.home-manager
+            mac-app-util.darwinModules.default
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, home-manager, mac-app-util, ... }:
 
 let
   user = "nickt";
@@ -46,6 +46,7 @@ in {
   # Enable home-manager
   home-manager = {
     useGlobalPkgs = true;
+    sharedModules = [ mac-app-util.homeManagerModules.default ];
     users.${user} = { pkgs, config, lib, ... }:{
       home = {
         enableNixpkgsReleaseCheck = false;
