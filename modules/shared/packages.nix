@@ -25,6 +25,9 @@ in [
   golint
   gopls
 
+  # Fonts
+  powerline-fonts
+
   # General tools.
   certigo
   colordiff
